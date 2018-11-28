@@ -1,16 +1,31 @@
-require 'spec_helper'
+require_relative '../spec_helper'
+Dir[File.join(File.dirname(__FILE__), "../../app/models", "*.rb")].each {|f| require f}
 
 context 'GeneratorCLI' do
+
+  let(:cli) { GeneratorCLI.new }  
+  before do
+
+  end
+
   it "has a Generator object" do
-    expect false.to_be true
+    expect(cli).to respond_to(:generator)
   end
 
   describe "run" do
     it "allows user to type 'class' to start creating a new class" do
-      expect false.to_be true
+      allow($stdout).to receive(:puts)
+      binding.pry
+      # allow(cli.run).to receive(:gets).and_return 'class'
+
+      expect(cli).to receive(:generate_class)
     end
+
     it "allows user to type 'view' to view info about a class" do
-      expect false.to_be true
+      allow($stdout).to receive(:puts)
+      allow(cli.run).to receive(:gets).and_return 'view 1'
+
+      expect(cli).to receive(:view_class_info)
     end   
   end
 
@@ -58,31 +73,12 @@ context 'GeneratorCLI' do
     end
   end
   
-  describe "view" do
-    it "lists existing classes" do
-      expect false.to_be true
-    end
-
-    it "allows user to select a class by number" do
-      expect false.to_be true
-    end
-
-    it "shows the relationships in that clas" do
-      expect false.to_be true
-    end
-
-    it "allows user to type 'edit' to edit the class being displayed" do
-      expect false.to_be true
-    end
-
-    it "allows user to type 'done' to return to the main prompt" do
-      expect false.to_be true
-    end
-
-  end
-
   describe "generate" do
     it "sets Generator object properties from instance variables" do
+      expect false.to_be true
+    end
+
+    it "calls Generator#generate to start the big process" do
       expect false.to_be true
     end
   end

@@ -7,21 +7,24 @@ class String
 end
 
 class GeneratorCLI
-  attr_accessor :generator
+  attr_accessor :generator, :class_name
 
-  def generate_class
-    get_class_name
+  def get_class_info
+    @class_name = get_class_name
   end
 
   def get_class_name
     puts "Enter the name for your class. Enter 'done' to return to the main prompt."
     input = gets.chomp
-    if input.valid_class_name?
-      @class_name = input
+    if input.downcase == "done"
+      run
+    elsif input.valid_class_name?
+      class_name = input.titleize
     else
       puts "Invalid class name."
       get_class_name
     end
+    class_name
   end
 
   def view_class_info(class_num)
@@ -41,7 +44,7 @@ class GeneratorCLI
     # display other input options
     input = gets.chomp
     if input == 'class'
-      generate_class
+      get_class_info
     elsif num = input.split("view ")[1]
       if (n = num.to_i) > 0
         view_class_info(n)

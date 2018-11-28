@@ -11,14 +11,14 @@ class ClassGenerator
   end
 
   def generate_model_code
-    code = code_from("app/templates/model.erb")
+    code = code_from "app/templates/model.erb" 
     new_path = FileUtils.mkdir_p "#{@path}/app/models/"
     full_path = "#{new_path.last}/#{@class_name.downcase}.rb"
     File.write(full_path, code)
   end
   
   def generate_migration
-    code = code_from("app/templates/migration.erb")
+    code = code_from "app/templates/migration.erb" 
     date_str = DateTime.now.strftime '%Y%m%d%H%M%S'
     filename = "#{date_str}_create_#{@class_name.underscore}s.rb"
     migr_path = FileUtils.mkdir_p "#{@path}/db/migrate"

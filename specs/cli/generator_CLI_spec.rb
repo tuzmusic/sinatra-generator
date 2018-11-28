@@ -5,7 +5,7 @@ context 'GeneratorCLI' do
 
   let(:cli) { GeneratorCLI.new }  
   before do
-
+    allow($stdout).to receive(:puts)
   end
 
   it "has a Generator object" do
@@ -13,25 +13,28 @@ context 'GeneratorCLI' do
   end
 
   describe "run" do
-    it "allows user to type 'class' to start creating a new class" do
-      allow($stdout).to receive(:puts)
-      binding.pry
-      # allow(cli.run).to receive(:gets).and_return 'class'
 
+    it "allows user to type 'class' to start creating a new class" do
+      allow(cli).to receive(:gets).and_return 'class'
       expect(cli).to receive(:generate_class)
+      cli.run
     end
 
     it "allows user to type 'view' to view info about a class" do
-      allow($stdout).to receive(:puts)
-      allow(cli.run).to receive(:gets).and_return 'view 1'
-
-      expect(cli).to receive(:view_class_info)
+      allow(cli).to receive(:gets).and_return 'view 1'
+      expect(cli).to receive(:view_class_info).with(1)
+      cli.run
     end   
+
+    xit "asks for input again if view is called with incorrect arguments" do
+      
+    end
   end
 
   describe 'get_class_name' do
     it "asks for the name of the class to create" do
-      expect false.to_be true
+      expect($stdout).to receive(:puts).with("Enter the name for your class")
+      cli.get_class_name
     end
     
     it "stores the name in the @class_name property" do

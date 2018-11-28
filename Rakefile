@@ -12,3 +12,4 @@ end
 task :generate do
   SiteGenerator.new("_generated").call
 end
+

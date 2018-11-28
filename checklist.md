@@ -1,3 +1,34 @@
+You should be able to write a model file (ruby class), which defines its relationships using ActiveRecord macros (has_many, belongs_to, etc)...
+...using a rake task
+
+The DB generator should find all the models defined (app/models/*.rb), and for each model, create and execute a migration.
+
+You should be able to make changes in the model
+...ideally the program would know if changes are simply additions, or more complex updates that require a full regeneration.
+...until that, all updates/changes will completely regenerate.
+
+
+CLI
+  @class_name
+  @relationships [{relationship:, related_class:}]
+  #run
+  #get_class_name
+  #get_relationships(class_name)
+Generator
+  #initialize(class_name)
+  #create_relationship(relationship:, related_class:)
+  @class: GeneratorClass
+GeneratorClass
+  #initialize(name)
+  @relationships: [String] (lines of code)
+  #filepath
+  @name: String (and convenience methods)
+  @has_many: [String] (names of classes)
+  @belongs_to: [String] (names of classes)
+  @has_many_through {many:String, through:String}
+
+
+
 MODELS AND TABLES
 _ Interface for defining relationships
 _ Implementation of relationships in models

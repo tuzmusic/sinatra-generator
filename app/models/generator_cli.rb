@@ -1,5 +1,11 @@
 require_relative '../../config/environment'
 
+class String
+  def valid_class_name?
+    true
+  end
+end
+
 class GeneratorCLI
   attr_accessor :generator
 
@@ -8,7 +14,14 @@ class GeneratorCLI
   end
 
   def get_class_name
-    puts "Enter the name for your class"
+    puts "Enter the name for your class. Enter 'done' to return to the main prompt."
+    input = gets.chomp
+    if input.valid_class_name?
+      @class_name = input
+    else
+      puts "Invalid class name."
+      get_class_name
+    end
   end
 
   def view_class_info(class_num)
@@ -34,7 +47,7 @@ class GeneratorCLI
         view_class_info(n)
       else 
         puts "Invalid input after 'view '."
-        run
+        run # should this go /after/ the input is checked, so that unless we exit (don't know how to do that!) we will run again?
       end
     end
   end

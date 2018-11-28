@@ -33,16 +33,25 @@ context 'GeneratorCLI' do
 
   describe 'get_class_name' do
     it "asks for the name of the class to create" do
-      expect($stdout).to receive(:puts).with("Enter the name for your class")
+      expect($stdout).to receive(:puts).with(/Enter the name for your class/)
+      expect(cli).to receive(:gets) {"anything"}
       cli.get_class_name
+    end
+
+    xit "asks again if an invalid class name is given" do
+      
     end
     
     it "stores the name in the @class_name property" do
-      expect false.to_be true
+      allow(cli).to receive(:gets) {'song'}
+      expect cli.class_name.to_eq 'Song'
+      cli.get_class_name
     end
-
+    
     it "allows user to type 'done' to exit class input" do
-      expect false.to_be true
+      allow(cli).to receive(:gets) {'done'}
+      expect cli.to_receive(:run)
+      cli.get_class_name
     end   
   end
   

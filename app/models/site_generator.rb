@@ -10,15 +10,20 @@ class SiteGenerator
     FileUtils.mkdir_p path
   end
 
-  def generate_class(class_name)
+  def generate(class_name)
+    generate_model_code(class_name)
+  end
+
+  def generate_model_code(class_name)
     code_template_str = File.read("app/templates/model.erb")
     template = ERB.new(code_template_str)
     code = template.result(binding)
-    binding.pry
+    new_path = FileUtils.mkdir_p "#{path}/models/"
+    File.write("#{new_path.last}/#{class_name.downcase}.rb", code)
   end
   
   def call
-    generate_class("Song")
+    generate("Song")
   end
   
 end

@@ -10,5 +10,5 @@ task :console do
 end
 
 task :generate do
-  SiteGenerator.new("_site").call
+  SiteGenerator.new("_generated").call
 end

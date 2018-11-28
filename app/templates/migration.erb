@@ -1,0 +1,7 @@
+class Create<%= @class_name.underscore %> < ActiveRecord::Migration
+  def change
+    create_table :<%= @class_name.underscore %> do |t|
+      t.string :name
+    end
+  end
+end

@@ -7,6 +7,12 @@ You should be able to make changes in the model
 ...ideally the program would know if changes are simply additions, or more complex updates that require a full regeneration.
 ...until that, all updates/changes will completely regenerate.
 
+***FOR THURSDAY!!!***
+
+hold off on the CLI for now
+Work on a class generator that will take input from wherever. From a CLI, from reading pre-written model files, from wherever.
+The specs can assign the values that the migration-, controller-, and views-generators use.
+
 
 CLI
   @class_name
@@ -21,12 +27,14 @@ Generator
 GeneratorClass
   #initialize(name)
   @relationships: [String] (lines of code)
-  #filepath
   @name: String (and convenience methods)
+  @properties: [{ name:String, type:String}]
   @has_many: [String] (names of classes)
   @belongs_to: [String] (names of classes)
-  @has_many_through {many:String, through:String}
+  @has_many_through [{ many:String, through:String }]
 
+ModelFileReader
+  `#filepath` (for model source file)
 
 
 MODELS AND TABLES

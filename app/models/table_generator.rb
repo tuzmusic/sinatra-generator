@@ -2,8 +2,8 @@ class TableGenerator
 
   attr_accessor :class
 
-  def class_name=(name)
-    @class_name = name
-    binding.pry
-  end
+  def table_name
+    @class.name.underscore
+  end  
+
 end

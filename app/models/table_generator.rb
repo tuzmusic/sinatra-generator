@@ -13,8 +13,15 @@ class TableGenerator
 
   def properties_columns
     @class.properties.map do |prop|
-      "t.#{prop[:type]} :#{prop[:name]}"
+      "t.#{prop[:type.downcase]} :#{prop[:name.downcase]}"
     end
+  end
+
+  def belongs_to_columns
+    @class.belongs_to.map do |cl|
+      "t.integer :#{cl.downcase}_id"
+    end
+
   end
 
 end

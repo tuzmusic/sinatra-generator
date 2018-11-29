@@ -53,7 +53,7 @@ context "TableGenerator" do
   
   describe "#belongs_to_columns" do
     it "returns an array with lines of code to create belongs_to relationships" do
-      expect(table_gen.belongs_to_columns).to include('t.integer artist_id')
+      expect(table_gen.belongs_to_columns).to include('t.integer :artist_id')
     end
   end
   

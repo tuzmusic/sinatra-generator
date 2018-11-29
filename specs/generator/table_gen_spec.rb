@@ -33,13 +33,13 @@ context "TableGenerator" do
 
   describe "#table_name" do
     it "generates and returns the name for the table" do
-      expect(table_gen.table_name).to eq("song_info")
+      expect(table_gen.table_name).to eq("song_infos")
     end
   end
   
   describe "#migration_name" do
     it "generates and returns the name for the migration" do
-      expect(table_gen.migration_name).to include("create_song_info")
+      expect(table_gen.migration_filename).to include("create_song_infos")
     end    
   end
   

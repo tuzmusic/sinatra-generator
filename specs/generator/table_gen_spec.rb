@@ -45,9 +45,9 @@ context "TableGenerator" do
   
   describe "#properties_columns" do
     it "returns an array with lines of code to create table columns for basic properties" do
-      expect(table_gen.properties).to include('t.string :name')
-      expect(table_gen.properties).to include('t.string :artist_name')
-      expect(table_gen.properties).to include('t.integer :duration_in_seconds')
+      expect(table_gen.properties_columns).to include('t.string :name')
+      expect(table_gen.properties_columns).to include('t.string :artist_name')
+      expect(table_gen.properties_columns).to include('t.integer :duration_in_seconds')
     end
   end
   

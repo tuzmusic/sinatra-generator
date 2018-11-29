@@ -11,4 +11,10 @@ class TableGenerator
     filename = "#{date_str}_create_#{table_name}.rb"
   end
 
+  def properties_columns
+    @class.properties.map do |prop|
+      "t.#{prop[:type]} :#{prop[:name]}"
+    end
+  end
+
 end

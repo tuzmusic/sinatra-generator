@@ -59,7 +59,8 @@ context "TableGenerator" do
 
   describe "#migration_code" do
     it "creates all the code for the migration" do
-      expect(false).to eq(true)
+      path = "fixtures/migration_song_infos.rb"
+      expect(table_gen.migration_code).to eq(File.read(path))
     end    
   end
   

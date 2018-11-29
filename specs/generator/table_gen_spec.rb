@@ -56,14 +56,14 @@ context "TableGenerator" do
       expect(table_gen.belongs_to_columns).to include('t.integer :artist_id')
     end
   end
-  
-  describe "#generate_migration" do
+
+  describe "#migration_code" do
     it "creates all the code for the migration" do
       expect(false).to eq(true)
-    end
-    it "creates a migration file, named like an active record migration" do
-      expect(false).to eq(true)
-    end
+    end    
+  end
+  
+  describe "#generate_migration" do
     it "creates the file for the migration" do
       expect(false).to eq(true)
     end

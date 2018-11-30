@@ -30,7 +30,7 @@ class TableGenerator
     template.result(binding)
   end
 
-  def generate_crate_table_migration
+  def generate_create_table_migration
     File.write("_generated/db/migrate/#{create_table_filename}", create_table_code)
   end
 

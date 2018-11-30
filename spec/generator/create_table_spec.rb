@@ -10,7 +10,7 @@ context "TableGenerator" do
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist']
     cl.has_many = ['SongGenre']
-    cl has_many_through = { many: 'Genre', through 'SongGenre' }
+    cl.has_many_through = { many: 'Genre', through: 'SongGenre' }
     end 
   }
 
@@ -59,17 +59,17 @@ context "TableGenerator" do
     end
   end  
   
-  describe "#generate_migration" do
+  describe "#generate_create_table_migration" do
     it "creates the file for the migration" do
       expect{
-        table_gen.generate_crate_table_migration
+        table_gen.generate_create_table_migration
       }.to change{
         Dir["_generated/db/migrate/*"].length
       }.by(1)
     end
   end
 
-  describe "#migration_code" do
+  describe "#create_table_code" do
     it "creates all the code for the migration" do
       path = "fixtures/migration_song_infos.rb"
       expect(table_gen.create_table_code).to eq(File.read(path))

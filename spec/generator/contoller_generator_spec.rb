@@ -62,6 +62,20 @@ describe "ControllerGenerator" do
         expect(con_gen.create_self).to eq("song_info = SongInfo.find(params[':id']")
       end
     end
+    
+    describe "create_new_belongs_to" do
+      it "returns code to assign new instances of belongs_to properties" do
+        lines = ["song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?","song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
+        expect(con_gen.create_new_belongs_to).to eq(lines)
+      end
+    end
+      
+    describe "create_new_has_many" do
+      it "returns code to add new instances of has_many properties" do
+        lines = ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?","song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?"]
+        expect(con_gen.create_new_belongs_to).to eq(lines)
+      end
+    end
   end
 
   describe "index_action" do

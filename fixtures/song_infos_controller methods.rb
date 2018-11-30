@@ -1,5 +1,4 @@
-class SongInfosController < ActiveRecord::Base
-  
+class SongInfosControllerMock 
   def index_action
     %(get '/song_infos' do
       @song_infos = SongInfo.all

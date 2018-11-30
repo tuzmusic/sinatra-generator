@@ -29,7 +29,6 @@ describe "ControllerGenerator" do
 
   describe "index_action" do
     it "returns code for an index route" do
-      binding.pry
       expect(con_gen.index_action).to eq(mock.index_action)
     end
     

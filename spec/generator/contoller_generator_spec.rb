@@ -44,10 +44,22 @@ describe "ControllerGenerator" do
         expect(con_gen.all_properties).to eq(mock.all_properties)
       end
     end
-
+    
     describe "create_self" do
-      it "" do
-        
+      it "returns code to create an instance of the 'self' class" do
+        expect(con_gen.create_self).to eq("song_info = SongInfo.create(params['song_info']")
+      end
+    end
+    
+    describe "update_self" do
+      it "returns code to update an instance of the 'self' class" do
+        expect(con_gen.create_self).to eq("song_info = SongInfo.update(params['song_info']")
+      end
+    end
+    
+    describe "find_self" do
+      it "returns code to find an instance of the 'self' class using params[:id]" do
+        expect(con_gen.create_self).to eq("song_info = SongInfo.find(params[':id']")
       end
     end
   end

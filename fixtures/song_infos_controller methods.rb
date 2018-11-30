@@ -7,7 +7,6 @@ class SongInfosControllerMock
   end
 
   def new_action
-    
     %(get '/song_infos/new' do
       @artists = Artist.all
       @albums = Album.all
@@ -26,8 +25,14 @@ class SongInfosControllerMock
       song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?
       song_info.save
       redirect "song_infos/\#{song_info.id}"
+    end)    
+  end
+
+  def show_action
+    %(get '/song_infos/:id' do 
+      @song_info = SongInfo.find(params[:id])
+      erb :'/song_infos/show'
     end)
-    
   end
 
 end

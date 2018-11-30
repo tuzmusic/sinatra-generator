@@ -49,5 +49,17 @@ describe "ControllerGenerator" do
     it "returns code for a create route" do
       expect(con_gen.create_action).to eq(mock.create_action)
     end
+    describe "create_action code" do
+      it "creates a new song from the params" do end
+      it "creates and assigns new instances of belongs_to objects" do end
+      it "creates and stores new instances of has_many objects" do end
+      it "redirects to the new object's show page" do end
+    end
+  end
+  
+  describe "show_action" do
+    it "returns code for a show action" do
+      expect(con_gen.show_action).to eq(mock.show_action)
+    end
   end
 end

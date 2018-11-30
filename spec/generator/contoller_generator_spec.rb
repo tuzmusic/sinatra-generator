@@ -62,4 +62,10 @@ describe "ControllerGenerator" do
       expect(con_gen.show_action).to eq(mock.show_action)
     end
   end
+  
+  describe "edit_action" do
+    it "returns code an edit_action" do
+      expect(con_gen.edit_action).to eq(mock.edit_action)      
+    end
+  end
 end

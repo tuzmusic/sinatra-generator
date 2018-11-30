@@ -9,6 +9,8 @@ context "TableGenerator" do
                       {name: 'artist_name', type: 'string'},
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist']
+    cl.has_many = ['SongGenre']
+    cl has_many_through = { many: 'Genre', through 'SongGenre' }
     end 
   }
 
@@ -72,7 +74,7 @@ context "TableGenerator" do
       path = "fixtures/migration_song_infos.rb"
       expect(table_gen.create_table_code).to eq(File.read(path))
     end    
-  end
+  end 
   
 
 end

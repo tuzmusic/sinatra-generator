@@ -37,7 +37,7 @@ context "TableGenerator" do
     end
   end
   
-  describe "#migration_name" do
+  describe "#create_table_filename" do
     it "generates and returns the name for the migration" do
       expect(table_gen.create_table_filename).to include("create_song_infos")
     end    

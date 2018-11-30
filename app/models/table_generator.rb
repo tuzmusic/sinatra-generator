@@ -6,7 +6,7 @@ class TableGenerator
     @class.name.underscore.pluralize
   end  
 
-  def migration_filename
+  def create_table_filename
     date_str = DateTime.now.strftime '%Y%m%d%H%M%S'
     filename = "#{date_str}_create_#{table_name}.rb"
   end
@@ -24,14 +24,14 @@ class TableGenerator
   end
 
   def create_table_code
-    path = "app/templates/migration.erb"
+    path = "app/templates/create_table_migration.erb"
     template_str = File.read(path)
     template = ERB.new(template_str)
     template.result(binding)
   end
 
   def generate_crate_table_migration
-    File.write("_generated/db/migrate/#{migration_filename}", create_table_code)
+    File.write("_generated/db/migrate/#{create_table_filename}", create_table_code)
   end
 
 end

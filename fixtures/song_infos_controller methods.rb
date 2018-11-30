@@ -47,7 +47,7 @@ class SongInfosControllerMock
   end
 
   def patch_action
-    %(  patch '/song_infos/:id' do 
+    %(patch '/song_infos/:id' do 
       if !params[:song_info].keys.include?('genre_ids')
         params[:song_info]['genre_ids'] = []
       end 
@@ -63,8 +63,7 @@ class SongInfosControllerMock
       song_info.save
       redirect "song_infos/\#{song_info.id}"
       end
-    end)
-    
+    end)    
   end
 
 end

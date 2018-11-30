@@ -68,6 +68,7 @@ describe "ControllerGenerator" do
       expect(con_gen.edit_action).to eq(mock.edit_action)      
     end
   end
+
   describe "patch_action" do
     it "returns code a patch_action" do
       expect(con_gen.patch_action).to eq(mock.patch_action)      
@@ -79,6 +80,16 @@ describe "ControllerGenerator" do
       it "creates and assigns new instances of belongs_to objects" do end
       it "creates and stores new instances of has_many objects" do end
       it "redirects to the new object's show page" do end
+    end
+  end
+
+  describe "delete_action" do
+    it "returns code for a delete action" do
+      
+    end
+    describe "delete action code" do
+      it "finds the object" do end
+      it "deletes the object" do end
     end
   end
 end

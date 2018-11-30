@@ -60,7 +60,7 @@ context "TableGenerator" do
   describe "#generate_migration" do
     it "creates the file for the migration" do
       expect{
-        table_gen.generate_migration
+        table_gen.generate_crate_table_migration
       }.to change{
         Dir["_generated/db/migrate/*"].length
       }.by(1)
@@ -70,7 +70,7 @@ context "TableGenerator" do
   describe "#migration_code" do
     it "creates all the code for the migration" do
       path = "fixtures/migration_song_infos.rb"
-      expect(table_gen.migration_code).to eq(File.read(path))
+      expect(table_gen.create_table_code).to eq(File.read(path))
     end    
   end
   

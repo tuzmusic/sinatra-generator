@@ -23,15 +23,15 @@ class TableGenerator
     end
   end
 
-  def migration_code
+  def create_table_code
     path = "app/templates/migration.erb"
     template_str = File.read(path)
     template = ERB.new(template_str)
     template.result(binding)
   end
 
-  def generate_migration
-    File.write("_generated/db/migrate/#{migration_filename}", migration_code)
+  def generate_crate_table_migration
+    File.write("_generated/db/migrate/#{migration_filename}", create_table_code)
   end
 
 end

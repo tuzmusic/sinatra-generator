@@ -6,4 +6,14 @@ class SongInfosControllerMock
     end)
   end
 
+  def new_action
+    %(get '/song_infos/new' do
+        @artists = Artist.all
+        @albums = Album.all
+        @genres = Genre.all
+        @players = Player.all
+        erb :'/song_infos/new'
+      end)
+  end
+
 end

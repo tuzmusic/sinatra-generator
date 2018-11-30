@@ -8,9 +8,10 @@ describe "ControllerGenerator" do
     cl.properties = [ {name: 'name', type: 'string'},
                       {name: 'artist_name', type: 'string'},
                       {name: 'duration_in_seconds', type: 'integer'} ]
-    cl.belongs_to = ['Artist']
-    cl.has_many = ['SongGenre']
-    cl.has_many_through = { many: 'Genre', through: 'SongGenre' }
+    cl.belongs_to = ['Artist', 'Album']
+    cl.has_many = ['SongGenre', 'SongPlayers']
+    cl.has_many_through = [ { many: 'Genre', through: 'SongGenre' },
+                            { many: 'Players', through: 'SongPlayers' }]
     end 
   }
 
@@ -31,6 +32,16 @@ describe "ControllerGenerator" do
     it "returns code for an index route" do
       expect(con_gen.index_action).to eq(mock.index_action)
     end
-    
+  end
+
+  describe "new_action" do
+    it "returns code for an index route" do
+      expect(con_gen.new_action).to eq(mock.new_action)
+    end
+    describe "new_action code" do
+      it "stores instance variable containing all has_many and belongs_to objects" do
+        
+      end
+    end
   end
 end

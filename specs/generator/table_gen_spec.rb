@@ -55,6 +55,16 @@ context "TableGenerator" do
     it "returns an array with lines of code to create belongs_to relationships" do
       expect(table_gen.belongs_to_columns).to include('t.integer :artist_id')
     end
+  end  
+  
+  describe "#generate_migration" do
+    it "creates the file for the migration" do
+      expect{
+        table_gen.generate_migration
+      }.to change{
+        Dir["_generated/db/migrate/*"].length
+      }.by(1)
+    end
   end
 
   describe "#migration_code" do
@@ -64,10 +74,5 @@ context "TableGenerator" do
     end    
   end
   
-  describe "#generate_migration" do
-    it "creates the file for the migration" do
-      expect(false).to eq(true)
-    end
-  end
 
 end

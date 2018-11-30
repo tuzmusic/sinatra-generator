@@ -35,13 +35,19 @@ describe "ControllerGenerator" do
   end
 
   describe "new_action" do
-    it "returns code for an index route" do
+    it "returns code for a new route" do
       expect(con_gen.new_action).to eq(mock.new_action)
     end
     describe "new_action code" do
       it "stores instance variable containing all has_many and belongs_to objects" do
-        
+        # mock takes care of this. just for description and clarification
       end
+    end
+  end
+  
+  describe "create_action" do
+    it "returns code for a create route" do
+      expect(con_gen.create_action).to eq(mock.create_action)
     end
   end
 end

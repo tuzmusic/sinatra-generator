@@ -1,4 +1,12 @@
 class SongInfosControllerMock 
+
+  def all_properties
+    ['@artists = Artist.all',
+      '@albums = Album.all',
+      '@genres = Genre.all',
+      '@players = Player.all']
+  end
+
   def index_action
     %(get '/song_infos' do
       @song_infos = SongInfo.all
@@ -64,6 +72,13 @@ class SongInfosControllerMock
       redirect "song_infos/\#{song_info.id}"
       end
     end)    
+  end
+
+  def delete_action
+    %(delete '/song_infos/:id' do
+      song_info = SongInfo.find(params[:id])
+      song_info.delete
+    end)
   end
 
 end

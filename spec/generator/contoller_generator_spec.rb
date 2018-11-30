@@ -20,12 +20,36 @@ describe "ControllerGenerator" do
     end
   }
 
+  con_gen = ControllerGenerator.new.tap do |cg|
+      cg.class = cl
+    end
+
   require_relative '../../fixtures/song_infos_controller methods'
   let(:mock) { SongInfosControllerMock.new }
 
   it "has a @class property that stores a GeneratorClass instance" do
     expect(con_gen).to respond_to(:class)
     expect(con_gen.class.class).to eq(GeneratorClass)
+  end
+
+  describe "small code generators" do
+    describe "all_self" do
+      it "returns code to store all instances of the 'self' class" do
+        expect(con_gen.all_self).to eq('@song_infos = SongInfo.all')
+      end
+    end
+
+    describe "all_properties" do
+      it "returns code to store all instances of all has_many and belongs_to objects" do
+        expect(con_gen.all_properties).to eq(mock.all_properties)
+      end
+    end
+
+    describe "create_self" do
+      it "" do
+        
+      end
+    end
   end
 
   describe "index_action" do

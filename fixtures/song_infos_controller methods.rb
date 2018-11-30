@@ -19,8 +19,8 @@ class SongInfosControllerMock
   def create_action
     %(post '/song_infos' do 
       song_info = SongInfo.create(params['song_info'])
-      song_info.artists = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?
-      song_info.albums = Album.create(name: params['album']['name']) unless params['album']['name'].empty?
+      song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?
+      song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?
       song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?
       song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?
       song_info.save
@@ -44,6 +44,27 @@ class SongInfosControllerMock
       @players = Player.all
       erb :'/song_infos/edit'
     end)
+  end
+
+  def patch_action
+    %(  patch '/song_infos/:id' do 
+      if !params[:song_info].keys.include?('genre_ids')
+        params[:song_info]['genre_ids'] = []
+      end 
+      if !params[:song_info].keys.include?('player_ids')
+        params[:song_info]['player_ids'] = []
+      end 
+      song_info = song_info.find(params[:id])
+      song_info.update(params['song_info'])
+      song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?
+      song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?
+      song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?
+      song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?
+      song_info.save
+      redirect "song_infos/\#{song_info.id}"
+      end
+    end)
+    
   end
 
 end

@@ -64,8 +64,21 @@ describe "ControllerGenerator" do
   end
   
   describe "edit_action" do
-    it "returns code an edit_action" do
+    it "returns code for an edit action" do
       expect(con_gen.edit_action).to eq(mock.edit_action)      
+    end
+  end
+  describe "patch_action" do
+    it "returns code a patch_action" do
+      expect(con_gen.patch_action).to eq(mock.patch_action)      
+    end
+    describe "patch_action code" do
+      it "clears has_many if boxes are unchecked" do end
+      it "finds the object to update" do end
+      it "updates the object from the params" do end
+      it "creates and assigns new instances of belongs_to objects" do end
+      it "creates and stores new instances of has_many objects" do end
+      it "redirects to the new object's show page" do end
     end
   end
 end

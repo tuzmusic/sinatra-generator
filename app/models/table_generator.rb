@@ -3,7 +3,7 @@ class TableGenerator
   attr_accessor :class
 
   def table_name
-    @class.name.underscore.pluralize
+    @class.table_name
   end  
 
   def create_table_filename

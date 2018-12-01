@@ -92,6 +92,18 @@ describe "ControllerGenerator" do
       end
     end
 
+    describe "clear_unhecked_params" do
+      it "returns an array of code to clear out unchecked params" do
+        lines = ["if !params[:song_info].keys.include?('genre_ids')
+        params[:song_info]['genre_ids'] = []
+      end",
+      "if !params[:song_info].keys.include?('player_ids')
+        params[:song_info]['player_ids'] = []
+      end"]
+        expect(con_gen.clear_unchecked_params).to eq(lines)
+      end
+    end
+
 
   end
 

@@ -19,11 +19,6 @@ describe "ControllerGenerator" do
       cg.class = cl
     end
   }
-
-  con_gen = ControllerGenerator.new.tap do |cg|
-      cg.class = cl
-    end
-
   require_relative '../../fixtures/song_infos_controller methods'
   let(:mock) { SongInfosControllerMock.new }
 
@@ -95,15 +90,14 @@ describe "ControllerGenerator" do
     describe "clear_unhecked_params" do
       it "returns an array of code to clear out unchecked params" do
         lines = ["if !params[:song_info].keys.include?('genre_ids')
-        params[:song_info]['genre_ids'] = []
-      end",
-      "if !params[:song_info].keys.include?('player_ids')
-        params[:song_info]['player_ids'] = []
-      end"]
+          params[:song_info]['genre_ids'] = []
+        end",
+        "if !params[:song_info].keys.include?('player_ids')
+          params[:song_info]['player_ids'] = []
+        end"]
         expect(con_gen.clear_unchecked_params).to eq(lines)
       end
     end
-
 
   end
 

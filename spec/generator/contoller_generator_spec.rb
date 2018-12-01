@@ -81,10 +81,18 @@ describe "ControllerGenerator" do
 
     describe "redirect_show" do
       it "returns code to redirect to the current instance's show page" do
-        line = 'redirect "song_infos/\#{song_info.id}"'
+        line = 'redirect "song_infos/#{song_info.id}"'
         expect(con_gen.redirect_show).to eq(line)
       end
     end
+
+    describe "erb_call(path)" do
+      it "returns an erb command with the argument as the path" do
+        expect(con_gen.erb_call('new')).to eq("erb :'/song_infos/new'")
+      end
+    end
+
+
   end
 
   describe "index_action" do

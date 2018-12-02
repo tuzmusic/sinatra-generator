@@ -17,6 +17,8 @@ class TableGenerator
     end
   end
 
+  # has_many and has_many_through relationships are not represented in the table (they're represented in /other/ tables)
+
   def belongs_to_columns
     @class.belongs_to.map do |cl|
       "t.integer :#{cl.downcase}_id"

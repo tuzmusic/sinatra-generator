@@ -9,7 +9,7 @@ describe "ControllerGenerator" do
                       {name: 'artist_name', type: 'string'},
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist', 'Album']
-    cl.has_many = ['SongGenre', 'SongPlayers']
+    cl.has_many = ['Verse']
     cl.many_through_join = [ { many: 'Genre', through: 'SongGenre' },
                             { many: 'Player', through: 'SongPlayers' }]
     end 

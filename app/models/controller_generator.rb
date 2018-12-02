@@ -13,6 +13,10 @@ class ControllerGenerator
     end
   end  
 
+  def create_self
+    "#{@class.singular_name} = #{@class.name}.create(params['#{@class.singular_name}']"    
+  end
+
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all

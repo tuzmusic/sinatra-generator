@@ -5,5 +5,9 @@ class GeneratorClass
   def table_name
     @name.underscore.pluralize
   end  
+
+  def singular_name
+    @name.underscore
+  end
   
 end

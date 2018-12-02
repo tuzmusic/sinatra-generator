@@ -1,5 +1,4 @@
 require_relative '../spec_helper'
-Dir[File.join(File.dirname(__FILE__), "../../app/models", "*.rb")].each {|f| require f}
 
 context "TableGenerator" do
 
@@ -10,7 +9,7 @@ context "TableGenerator" do
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist']
     cl.has_many = ['SongGenre']
-    cl.has_many_through = { many: 'Genre', through: 'SongGenre' }
+    cl.many_through_join = { many: 'Genre', through: 'SongGenre' }
     end 
   }
 

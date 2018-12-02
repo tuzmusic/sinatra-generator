@@ -10,8 +10,8 @@ describe "ControllerGenerator" do
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist', 'Album']
     cl.has_many = ['SongGenre', 'SongPlayers']
-    cl.has_many_through = [ { many: 'Genre', through: 'SongGenre' },
-                            { many: 'Players', through: 'SongPlayers' }]
+    cl.many_through_join = [ { many: 'Genre', through: 'SongGenre' },
+                            { many: 'Player', through: 'SongPlayers' }]
     end 
   }
 
@@ -36,7 +36,7 @@ describe "ControllerGenerator" do
 
     describe "all_properties" do
       it "returns code to store all instances of all has_many and belongs_to objects" do
-        expect(con_gen.all_properties).to eq(mock.all_properties)
+        expect(con_gen.all_properties).to match_array(mock.all_properties)
       end
     end
     

@@ -52,7 +52,7 @@ MANY_TO_MANY RELATIONSHIPS
 
   HOWEVER!!!
     In terms of making the migration,
-    has_many and has_many_through relationships are NOT REPRESENTED IN ANY TABLE.
+    has_many and many_through_join relationships are NOT REPRESENTED IN ANY TABLE.
     Only belongs_to relationships are represented in a table!!!
     A one-to-many is represented by a parent_id column in the child
     And a many-to-many is represented by columns in the join table!
@@ -76,7 +76,7 @@ GeneratorClass
   @properties: [{ name:String, type:String}]
   @has_many: [String] (names of classes)
   @belongs_to: [String] (names of classes)
-  @has_many_through [{ many:String, through:String }]
+  @many_through_join [{ many:String, through:String }]
 
 ModelFileReader
   `#filepath` (for model source file)
@@ -93,6 +93,39 @@ _ Generate index action
 _ Generate show action
 _ Generate create action
 _ Generate edit action
+
+ControllerGenerator
+has a @classes array of GeneratorClasses
+  (it does NOT worry about parsing class files or migrations or anything, that is done to create the GeneratorClass, which is complete when it arrives at ControllerGenerator)
+it creates controllers for each class individually
+but it still needs to know about all the classes
+  (unless it has a class generator to read the file structure and 
+  create GeneratorClasses - but that's for much later)
+(it has a way to select classes to skip controllers for)
+
+NO, WAIT!
+maybe it doesn't need to have all the classes
+since the Song class generates SongController only!
+_ Generate index action
+    only needs to know about songs
+_ Generate show action
+    needs to know about all the properties of the song
+    but those are all referenced in the song class itself
+    it doesn't need to know the values of those properties
+      (e.g., what the artist.name is)
+_ Generate create action
+    needs to know about the properties of the song
+    if it allows you to create a new artist 
+      (rather than pick from existing)
+      then it DOES need to know the artists's properties. Maybe?
+      If it can simply assume that an artist has a name, 
+        (i.e., that any parent class has a name property)
+      and that's considered enough to create a new artist
+      then it doesn't need to know about the actual artist class
+    All of this, of course, assumes/requires that all the classes are properly built etc.
+
+_ Generate edit action
+
 
 VIEWS
 _ Generate index page

@@ -62,7 +62,7 @@ describe "ControllerGenerator" do
       it "returns code to assign new instances of belongs_to properties" do
         lines = ["song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?",
         "song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
-        expect(con_gen.create_new_belongs_to).to eq(lines)
+        expect(con_gen.create_new_belongs_to).to match_array(lines)
       end
     end
       
@@ -70,7 +70,7 @@ describe "ControllerGenerator" do
       it "returns code to add new instances of has_many properties" do
         lines = ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?",
         "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?"]
-        expect(con_gen.create_new_belongs_to).to eq(lines)
+        expect(con_gen.create_new_belongs_to).to match_array(lines)
       end
     end
 
@@ -95,7 +95,7 @@ describe "ControllerGenerator" do
         "if !params[:song_info].keys.include?('player_ids')
           params[:song_info]['player_ids'] = []
         end"]
-        expect(con_gen.clear_unchecked_params).to eq(lines)
+        expect(con_gen.clear_unchecked_params).to match_array(lines)
       end
     end
 

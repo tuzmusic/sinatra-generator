@@ -32,10 +32,9 @@ class ControllerGenerator
   end
   
   def create_new_has_many
-    # binding.pry
     props = @class.has_many + @class.many_through_join.map{|p| p[:many]}
     props.map do |prop|
-      "#{@class.singular_name}.#{prop.underscore.pluralize} << #{prop}.create(name: params['#{prop.underscore.pluralize}_name']) unless params['#{prop.underscore.pluralize}_name'].empty?"
+      "#{@class.singular_name}.#{prop.underscore.pluralize} << #{prop}.create(name: params['#{prop.underscore}_name']) unless params['#{prop.underscore}_name'].empty?"
       end
   end
 

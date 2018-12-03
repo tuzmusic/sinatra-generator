@@ -150,8 +150,9 @@ describe "ControllerGenerator" do
       
     end
     describe "delete action code" do
-      it "finds the object" do end
-      it "deletes the object" do end
+      it "finds and deletes the object" do 
+        expect(con_gen.delete_action).to eq(mock.delete_action)
+      end
     end
   end
 end

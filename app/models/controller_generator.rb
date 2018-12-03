@@ -14,11 +14,15 @@ class ControllerGenerator
   end  
 
   def create_self
-    "#{@class.singular_name} = #{@class.name}.create(params['#{@class.singular_name}']"    
+    "#{@class.singular_name} = #{@class.name}.create(params['#{@class.singular_name}'])"    
   end
 
   def update_self
-    "#{@class.singular_name} = #{@class.name}.update(params['#{@class.singular_name}']"   
+    "#{@class.singular_name} = #{@class.name}.update(params['#{@class.singular_name}'])"   
+  end
+  
+  def find_self
+    "#{@class.singular_name} = #{@class.name}.find(params[:id])"   
   end
 
   def index_action
@@ -27,5 +31,5 @@ class ControllerGenerator
       erb :'/#{@class.table_name}/index'
     end)
   end
-
+  
 end

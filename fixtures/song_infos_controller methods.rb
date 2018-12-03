@@ -15,6 +15,20 @@ class SongInfosControllerMock
     "song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
   end
 
+  def create_new_has_many
+    ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?",
+    "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?"]
+  end
+
+  def clear_unchecked_params
+    ["if !params[:song_info].keys.include?('genre_ids')
+          params[:song_info]['genre_ids'] = []
+        end",
+    "if !params[:song_info].keys.include?('player_ids')
+      params[:song_info]['player_ids'] = []
+    end"]
+  end
+
   def index_action
     %(get '/song_infos' do
       @song_infos = SongInfo.all

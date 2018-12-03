@@ -60,17 +60,13 @@ describe "ControllerGenerator" do
     
     describe "create_new_belongs_to" do
       it "returns code to assign new instances of belongs_to properties" do
-        lines = ["song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?",
-        "song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
-        expect(con_gen.create_new_belongs_to).to match_array(lines)
+        expect(con_gen.create_new_belongs_to).to match_array(mock.create_new_belongs_to)
       end
     end
       
     describe "create_new_has_many" do
       it "returns code to add new instances of has_many properties" do
-        lines = ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?",
-        "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?"]
-        expect(con_gen.create_new_belongs_to).to match_array(lines)
+        expect(con_gen.create_new_belongs_to).to match_array(mock.create_new_has_many)
       end
     end
 
@@ -89,13 +85,7 @@ describe "ControllerGenerator" do
 
     describe "clear_unchecked_params" do
       it "returns an array of code to clear out unchecked params" do
-        lines = ["if !params[:song_info].keys.include?('genre_ids')
-          params[:song_info]['genre_ids'] = []
-        end",
-        "if !params[:song_info].keys.include?('player_ids')
-          params[:song_info]['player_ids'] = []
-        end"]
-        expect(con_gen.clear_unchecked_params).to match_array(lines)
+        expect(con_gen.clear_unchecked_params).to match_array(mock.clear_unchecked_params)
       end
     end
 

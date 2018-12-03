@@ -11,8 +11,8 @@ class SongInfosControllerMock
   end
 
   def create_new_belongs_to
-    ["song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?",
-    "song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
+    ["song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?",
+    "song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?"]
   end
 
   def create_new_has_many
@@ -59,10 +59,10 @@ class SongInfosControllerMock
   def create_action
     %(post '/song_infos' do 
       song_info = SongInfo.create(params['song_info'])
-      song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?
-      song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?
-      song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?
-      song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?
+      song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
+      song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
+      song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
+      song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
       song_info.save
       redirect "song_infos/\#{song_info.id}"
     end)    
@@ -96,10 +96,10 @@ class SongInfosControllerMock
       end 
       song_info = song_info.find(params[:id])
       song_info.update(params['song_info'])
-      song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?
-      song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?
-      song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?
-      song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?
+      song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
+      song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
+      song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
+      song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
       song_info.save
       redirect "song_infos/\#{song_info.id}"
       end

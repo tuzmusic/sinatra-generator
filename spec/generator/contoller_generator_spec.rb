@@ -90,6 +90,16 @@ describe "ControllerGenerator" do
 
   end
 
+   describe "create_controller_code" do
+    it "generates the entire controller file" do
+      # expect(con_gen.create_controller_code).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+      
+      con_gen.generate_controller
+      expect("_generated/app/controllers/song_infos_controller_full_mock.rb").to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+    end
+  end
+
+
   describe "index_action" do
     it "returns code for an index route" do
       expect(con_gen.index_action).to eq(mock.index_action)
@@ -155,17 +165,10 @@ describe "ControllerGenerator" do
       end
     end
   end
-  
+
   describe "controller_filename" do
     it "generates the name for the controller file" do
       expect(con_gen.controller_filename).to eq("song_infos_controller.rb")
-    end
-  end
-
-
-  describe "create_controller_code" do
-    it "generates the entire controller file" do
-      expect(con_gen.create_controller_code).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
     end
   end
 

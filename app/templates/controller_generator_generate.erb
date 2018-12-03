@@ -2,6 +2,5 @@ class <%= @class.name %>Controller < ApplicationController
 <% @actions.each do |action| %>
   # <%= action.name.to_s.titleize %>
 <%= action.call %>
-<% end %>
-
+  <% end %>
 end

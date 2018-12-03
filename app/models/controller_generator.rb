@@ -57,8 +57,8 @@ end
 class ControllerGenerator
 
   def indent(code_array)
-    # code_array.join("\n")
-    code_array.map do |line|
+    code_array.flatten.map do |line|
+      line.prepend('  ') 
       line.prepend('  ') if line != code_array.first && line != code_array.last
     end
     code_array.join("\n")
@@ -66,68 +66,67 @@ class ControllerGenerator
 
   # ROUTE GENERATORS
   def index_action
-    code = [%(get '/#{@class.table_name}' do),
+    indent([%(get '/#{@class.table_name}' do),
     %(@#{@class.table_name} = #{@class.name}.all),
     %(erb :'/#{@class.table_name}/index'),
-    %(end)]
-  end
-
-  def _index_action
-    %(  get '/#{@class.table_name}' do
-    @#{@class.table_name} = #{@class.name}.all
-    erb :'/#{@class.table_name}/index'
-  end)
+    %(end),])
   end
 
   def new_action
-    %(  get '/#{@class.table_name}/new' do
-    #{all_properties.join("\n    ")}
-    #{erb_call("new")}
-  end)
+    indent([%(get '/#{@class.table_name}/new' do),
+    %(#{all_properties.join("\n    ")}),
+    %(#{erb_call("new")}),
+    %(end),])
   end
 
   def create_action
-  %(  post '/#{@class.table_name}' do 
-    #{create_self}
-    #{create_new_belongs_to.join("\n")}
-    #{create_new_has_many.join("\n")}
-    #{@class.singular_name}.save
-    #{redirect_show}
-  end)    
+    indent([%(post '/#{@class.table_name}' do),
+    %(#{create_self}),
+    create_new_belongs_to.map {|line| line},
+    create_new_has_many.map {|line| line},
+    # %(#{create_new_belongs_to.join("\n    ")}),
+    # %(#{create_new_has_many.join("\n    ")}),
+    %(#{@class.singular_name}.save),
+    %(#{redirect_show}),
+    %(end),])
   end
 
-    def show_action
-  %(  get '/#{@class.table_name}/:id' do 
-    @#{find_self}
-    #{erb_call('show')}
-  end)
+  def show_action
+    indent([%(get '/#{@class.table_name}/:id' do),
+    %(@#{find_self}),
+    %(#{erb_call('show')}),
+    %(end),])
   end
 
   def edit_action
-  %(  get '/#{@class.table_name}/:id/edit' do
-    @#{find_self}
-    #{  all_properties.join("\n")}
-    #{erb_call("edit")}
-  end)
+    indent([%(get '/#{@class.table_name}/:id/edit' do),
+    %(@#{find_self}),
+    all_properties.map {|line| line},
+    # %(#{  all_properties.join("\n")}),
+    %(#{erb_call("edit")}),
+    %(end),])
   end  
 
   def patch_action
-    %(patch '/#{@class.table_name}/:id' do 
-      #{  clear_unchecked_params.join("\n")}
-      #{find_self}
-      #{update_self}
-      #{  create_new_belongs_to.join("\n")}
-      #{  create_new_has_many.join("\n")}
-      #{@class.singular_name}.save
-      #{redirect_show}
-    end)    
+    indent([%(patch '/#{@class.table_name}/:id' do),
+    # %(#{clear_unchecked_params.join("\n")}),
+    clear_unchecked_params.map {|line| line},
+    %(#{find_self}),
+    %(#{update_self}),
+    create_new_belongs_to.map {|line| line},
+    create_new_has_many.map {|line| line},
+    # %(#{create_new_belongs_to.join("\n")}),
+    # %(#{create_new_has_many.join("\n")}),
+    %(#{@class.singular_name}.save),
+    %(#{redirect_show}),
+    %(end),])
   end
 
   def delete_action
-    %(delete '/#{@class.table_name}/:id' do
-      #{find_self}
-      #{@class.singular_name}.delete
-    end)
+    indent([%(delete '/#{@class.table_name}/:id' do),
+    %(#{find_self}),
+    %(#{@class.singular_name}.delete),
+    %(end),])
   end
   
   def controller_filename
@@ -135,7 +134,6 @@ class ControllerGenerator
   end
 
   def create_controller_code
-    binding.pry
     @actions = [
       method(:index_action),
       method(:new_action),

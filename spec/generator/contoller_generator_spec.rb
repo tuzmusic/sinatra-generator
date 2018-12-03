@@ -95,7 +95,7 @@ describe "ControllerGenerator" do
       # expect(con_gen.create_controller_code).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
       
       con_gen.generate_controller
-      expect("_generated/app/controllers/song_infos_controller_full_mock.rb").to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+      expect(File.read("_generated/app/controllers/song_infos_controller.rb")).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
     end
   end
 

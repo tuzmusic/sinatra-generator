@@ -42,7 +42,7 @@ class ControllerGenerator
   end
 
   def erb_call(path)
-    "erb :'/#{@class.table_name}/new'"
+    "erb :'/#{@class.table_name}/#{path}'"
   end
 
   
@@ -81,6 +81,13 @@ class ControllerGenerator
       #{@class.singular_name}.save
       #{redirect_show}
     end)    
+  end
+
+    def show_action
+    %(get '/#{@class.table_name}/:id' do 
+      @#{find_self}
+      #{erb_call('show')}
+    end)
   end
 
 end

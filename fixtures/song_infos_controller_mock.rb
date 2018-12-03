@@ -53,6 +53,8 @@ class SongInfosControllerMock
       @albums = Album.all
       @genres = Genre.all
       @players = Player.all
+      @verses = Verse.all
+      @chorus = Chorus.all
       erb :'/song_infos/new'
     end)
   end

@@ -1,7 +1,7 @@
 class ControllerGenerator
-  
   attr_accessor :class
-
+  
+  # CODE HELPER METHODS
   def all_self
     "@#{@class.table_name} = #{@class.name}.all"
   end
@@ -55,23 +55,23 @@ class ControllerGenerator
     end)
     end
   end
-  
-#  "if !params[:song_info].keys.include?('verse_ids')\n" + "      params[:song_info]['verse_ids'] = []\n" + "      end",
-#  "if !params[:song_info].keys.include?('verse_ids')\n" + "      params[:song_info]['verse_ids'] = []\n" + "    end\"",
-#  "if !params[:song_info].keys.include?('chorus_ids')\n" + "      params[:song_info]['chorus_ids'] = []\n" + "      end",
-#  "if !params[:song_info].keys.include?('genre_ids')\n" + "      params[:song_info]['genre_ids'] = []\n" + "      end",
-#  "if !params[:song_info].keys.include?('player_ids')\n" + "      params[:song_info]['player_ids'] = []\n" + "      end"]
+end
 
-#  "if !params[:song_info].keys.include?('chorus_ids')\n" + "      params[:song_info]['chorus_ids'] = []\n" + "    end\""]
-#  "if !params[:song_info].keys.include?('genre_ids')\n" + "      params[:song_info]['genre_ids'] = []\n" + "    end\"",
-#  "if !params[:song_info].keys.include?('player_ids')\n" + "      params[:song_info]['player_ids'] = []\n" + "    end\"",
-
-
+class ControllerGenerator
+  # ROUTE GENERATORS
 
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all
       erb :'/#{@class.table_name}/index'
     end)
+  end
+
+  def new_action
+    %(get '/#{@class.table_name}/new' do
+      #{all_properties.join("\n      ")}
+      #{erb_call("new")}
+    end)
+
   end
 end

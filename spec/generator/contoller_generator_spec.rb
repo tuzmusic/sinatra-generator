@@ -48,7 +48,7 @@ describe "ControllerGenerator" do
     
     describe "update_self" do
       it "returns code to update an instance of the 'self' class" do
-        expect(con_gen.update_self).to eq("song_info = SongInfo.update(params['song_info'])")
+        expect(con_gen.update_self).to eq("song_info.update(params['song_info'])")
       end
     end
     

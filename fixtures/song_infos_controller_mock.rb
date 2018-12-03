@@ -25,18 +25,10 @@ class SongInfosControllerMock
 
   def clear_unchecked_params
     [
-    %(if !params[:song_info].keys.include?('verse_ids')
-      params[:song_info]['verse_ids'] = []
-    end),
-    %(if !params[:song_info].keys.include?('chorus_ids')
-      params[:song_info]['chorus_ids'] = []
-    end),
-    %(if !params[:song_info].keys.include?('genre_ids')
-      params[:song_info]['genre_ids'] = []
-    end),
-    %(if !params[:song_info].keys.include?('player_ids')
-      params[:song_info]['player_ids'] = []
-    end),
+    %(params[:song_info]['verse_ids'].clear if !params[:song_info].keys.include?('verse_ids')),
+    %(params[:song_info]['chorus_ids'].clear if !params[:song_info].keys.include?('chorus_ids')),
+    %(params[:song_info]['genre_ids'].clear if !params[:song_info].keys.include?('genre_ids')),
+    %(params[:song_info]['player_ids'].clear if !params[:song_info].keys.include?('player_ids')),
   ]
   end
 
@@ -95,21 +87,20 @@ class SongInfosControllerMock
 
   def patch_action
     %(patch '/song_infos/:id' do 
-      if !params[:song_info].keys.include?('genre_ids')
-        params[:song_info]['genre_ids'] = []
-      end 
-      if !params[:song_info].keys.include?('player_ids')
-        params[:song_info]['player_ids'] = []
-      end 
-      song_info = song_info.find(params[:id])
+      params[:song_info]['verse_ids'].clear if !params[:song_info].keys.include?('verse_ids')
+      params[:song_info]['chorus_ids'].clear if !params[:song_info].keys.include?('chorus_ids')
+      params[:song_info]['genre_ids'].clear if !params[:song_info].keys.include?('genre_ids')
+      params[:song_info]['player_ids'].clear if !params[:song_info].keys.include?('player_ids')
+      song_info = SongInfo.find(params[:id])
       song_info.update(params['song_info'])
       song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
       song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
+      song_info.verses << Verse.create(name: params['verse_name']) unless params['verse_name'].empty?
+      song_info.chorus << Chorus.create(name: params['chorus_name']) unless params['chorus_name'].empty?
       song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
       song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
       song_info.save
       redirect "song_infos/\#{song_info.id}"
-      end
     end)    
   end
 

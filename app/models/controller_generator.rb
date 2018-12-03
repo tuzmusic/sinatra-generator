@@ -17,7 +17,7 @@ class ControllerGenerator
   end
 
   def update_self
-    "#{@class.singular_name} = #{@class.name}.update(params['#{@class.singular_name}'])"   
+    "#{@class.singular_name}.update(params['#{@class.singular_name}'])"   
   end
   
   def find_self
@@ -49,16 +49,14 @@ class ControllerGenerator
   def clear_unchecked_params
     props = @class.has_many + @class.many_through_join.map{|p| p[:many]}
     props.map do |prop|
-    %(if !params[:#{@class.singular_name}].keys.include?('#{prop.underscore}_ids')
-      params[:song_info]['#{prop.underscore}_ids'] = []
-    end)
+    %(params[:song_info]['#{prop.underscore}_ids'].clear if !params[:#{@class.singular_name}].keys.include?('#{prop.underscore}_ids'))
     end
   end
 end
 
 class ControllerGenerator
-  # ROUTE GENERATORS
 
+  # ROUTE GENERATORS
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all
@@ -97,5 +95,17 @@ class ControllerGenerator
       #{erb_call("edit")}
     end)
   end  
+
+    def patch_action
+    %(patch '/#{@class.table_name}/:id' do 
+      #{clear_unchecked_params.join("\n      ")}
+      #{find_self}
+      #{update_self}
+      #{create_new_belongs_to.join("\n      ")}
+      #{create_new_has_many.join("\n      ")}
+      #{@class.singular_name}.save
+      #{redirect_show}
+    end)    
+  end
 
 end

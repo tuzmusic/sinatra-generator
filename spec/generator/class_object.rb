@@ -1,7 +1,8 @@
-require_relative '../spec_helper'
 Dir[File.join(File.dirname(__FILE__), "../../app/models", "*.rb")].each {|f| require f}
 
-describe "ViewsGenerator" do
+  let(:a1) { GeneratorClass.new.tap {|cl| cl.name = "First Artist"} }
+
+
   let(:cl) { GeneratorClass.new.tap do |cl|
     cl.name = "SongInfo"
     cl.properties = [ {name: 'name', type: 'string'},
@@ -13,18 +14,3 @@ describe "ViewsGenerator" do
                             { many: 'Player', through: 'SongPlayers' }]
     end 
   }
-
-  let(:vg) { ViewsGenerator.new.tap { |tg| 
-      vg.class = cl 
-    } 
-  }
-
-  path = "fixtures/song_infos_controller_full_mock.rb"
-
-  it "has a @class property that stores a GeneratorClass instance" do
-    expect(tg).to respond_to(:class)
-    expect(tg.class.class).to eq(GeneratorClass)
-  end
-
-
-end

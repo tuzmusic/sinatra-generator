@@ -1,0 +1,20 @@
+<h1>Update Song Info</h1>
+
+<form action="/song_infos/<%=@song_info.id%>" method="POST">
+  <input id="hidden" type="hidden" name="_method" value="patch">  
+  <p><label>Name:</label>
+  <input type="text" name="song_info[name]" id="song_info_name" value="<%=@song_info.name%>"></p>
+  
+  <p><label>Choose an existing pet:</label>
+ 
+  <%@pets.each do |pet|%>
+    <input type="checkbox" name="song_info[pet_ids][]" id="<%= pet.id %>" value="<%= pet.id %>"
+    <%= 'checked' if @song_info.pets.include?(pet) %>><%= pet.name %></input>
+  <%end%></p>
+
+  <p><label>and/or, create a new pet:</label></p>
+  <p><label>Name:</label>
+  <input type="text" name="pet[name]" id="pet_name"></p>
+  <input type="submit" value="Update Song Info">
+</form>
+

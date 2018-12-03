@@ -38,6 +38,10 @@ class ControllerGenerator
       end
   end
 
+  def redirect_show
+    "redirect \"#{@class.table_name}/\#{#{@class.singular_name}.id}\""
+  end
+
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all

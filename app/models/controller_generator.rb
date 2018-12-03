@@ -115,4 +115,18 @@ class ControllerGenerator
     end)
   end
 
+  def create_controller_code
+    path = "app/templates/controller_generator_generate.erb"
+    template_str = File.read(path)
+    template = ERB.new(template_str)
+    template.result(binding)
+  end
+
+  def controller_filename
+    @class.table_name + "_controller.rb"
+  end
+
+  def generate_controller
+    File.write("_generated/app/controllers/#{controller_filename}", create_controller_code)
+  end
 end

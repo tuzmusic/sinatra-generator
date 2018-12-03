@@ -74,6 +74,4 @@ context "TableGenerator" do
       expect(table_gen.create_table_code).to eq(File.read(path))
     end    
   end 
-  
-
 end

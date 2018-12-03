@@ -155,10 +155,28 @@ describe "ControllerGenerator" do
       end
     end
   end
-
-  describe "generate" do
-    it "generates the entire controller file" do
-      expect(con_gen.generate).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+  
+  describe "controller_filename" do
+    it "generates the name for the controller file" do
+      expect(con_gen.controller_filename).to eq("song_infos_controller.rb")
     end
   end
+
+
+  describe "create_controller_code" do
+    it "generates the entire controller file" do
+      expect(con_gen.create_controller_code).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+    end
+  end
+
+  describe "#generate_controller" do
+    it "creates the file for the controller" do
+      expect{
+        table_gen.generate_controller
+      }.to change{
+        Dir["_generated/app/controllers/*"].length
+      }.by(1)
+    end
+  end
+
 end

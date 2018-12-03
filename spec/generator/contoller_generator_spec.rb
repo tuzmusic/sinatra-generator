@@ -66,7 +66,6 @@ describe "ControllerGenerator" do
       
     describe "create_new_has_many" do
       it "returns code to add new instances of has_many properties" do
-        # binding.pry
         expect(con_gen.create_new_has_many).to match_array(mock.create_new_has_many)
       end
     end
@@ -85,7 +84,6 @@ describe "ControllerGenerator" do
 
     describe "clear_unchecked_params" do
       it "returns an array of code to clear out unchecked params" do
-        # binding.pry
         expect(con_gen.clear_unchecked_params).to match_array(mock.clear_unchecked_params)
       end
     end

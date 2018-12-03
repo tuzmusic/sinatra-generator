@@ -27,16 +27,16 @@ class SongInfosControllerMock
     [
     %(if !params[:song_info].keys.include?('verse_ids')
       params[:song_info]['verse_ids'] = []
-    end"),
+    end),
     %(if !params[:song_info].keys.include?('chorus_ids')
       params[:song_info]['chorus_ids'] = []
-    end"),
+    end),
     %(if !params[:song_info].keys.include?('genre_ids')
       params[:song_info]['genre_ids'] = []
-    end"),
+    end),
     %(if !params[:song_info].keys.include?('player_ids')
       params[:song_info]['player_ids'] = []
-    end"),
+    end),
   ]
   end
 

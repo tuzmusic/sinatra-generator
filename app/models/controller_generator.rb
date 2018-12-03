@@ -96,7 +96,7 @@ class ControllerGenerator
     end)
   end  
 
-    def patch_action
+  def patch_action
     %(patch '/#{@class.table_name}/:id' do 
       #{clear_unchecked_params.join("\n      ")}
       #{find_self}
@@ -106,6 +106,13 @@ class ControllerGenerator
       #{@class.singular_name}.save
       #{redirect_show}
     end)    
+  end
+
+  def delete_action
+    %(delete '/#{@class.table_name}/:id' do
+      #{find_self}
+      #{@class.singular_name}.delete
+    end)
   end
 
 end

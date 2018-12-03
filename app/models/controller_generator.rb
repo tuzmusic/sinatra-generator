@@ -7,8 +7,8 @@ class ControllerGenerator
   end
 
   def all_properties
-    props = @class.belongs_to + @class.many_through_join.map{|p| p[:many]} + @class.has_many
-    props.collect do |prop_name|
+    # props = @class.belongs_to + @class.many_through_join.map{|p| p[:many]} + @class.has_many
+    @class.relationship_names.collect do |prop_name|
       "@#{prop_name.underscore.pluralize} = #{prop_name}.all" 
     end
   end  

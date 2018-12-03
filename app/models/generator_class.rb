@@ -9,5 +9,9 @@ class GeneratorClass
   def singular_name
     @name.underscore
   end
+
+  def relationship_names
+    @belongs_to + @many_through_join.map{|p| p[:many]} + @has_many
+  end
   
 end

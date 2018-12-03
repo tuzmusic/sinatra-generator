@@ -72,8 +72,7 @@ describe "ControllerGenerator" do
 
     describe "redirect_show" do
       it "returns code to redirect to the current instance's show page" do
-        line = 'redirect "song_infos/#{song_info.id}"'
-        expect(con_gen.redirect_show).to eq(line)
+        expect(con_gen.redirect_show).to eq('redirect "song_infos/#{song_info.id}"')
       end
     end
 

@@ -17,7 +17,10 @@ class SongInfosControllerMock
 
   def create_new_has_many
     ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?",
-    "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?"]
+    "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?",
+    "song_info.verses << Verse.create(name: params['verse']['name']) unless params['verse']['name'].empty?",
+    "song_info.chorus << Chorus.create(name: params['chorus']['name']) unless params['chorus']['name'].empty?",
+  ]
   end
 
   def clear_unchecked_params
@@ -26,7 +29,14 @@ class SongInfosControllerMock
         end",
     "if !params[:song_info].keys.include?('player_ids')
       params[:song_info]['player_ids'] = []
-    end"]
+    end",
+    "if !params[:song_info].keys.include?('verse_ids')
+      params[:song_info]['verse_ids'] = []
+    end",
+    "if !params[:song_info].keys.include?('chorus_ids')
+      params[:song_info]['chorus_ids'] = []
+    end",
+  ]
   end
 
   def index_action

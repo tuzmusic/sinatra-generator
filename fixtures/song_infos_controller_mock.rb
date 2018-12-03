@@ -16,10 +16,10 @@ class SongInfosControllerMock
   end
 
   def create_new_has_many
-    ["song_info.genres << Genre.create(name: params['genre']['name']) unless params['genre']['name'].empty?",
-    "song_info.players << Player.create(name: params['player']['name']) unless params['player']['name'].empty?",
-    "song_info.verses << Verse.create(name: params['verse']['name']) unless params['verse']['name'].empty?",
-    "song_info.chorus << Chorus.create(name: params['chorus']['name']) unless params['chorus']['name'].empty?",
+    ["song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?",
+    "song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?",
+    "song_info.verses << Verse.create(name: params['verse_name']) unless params['verse_name'].empty?",
+    "song_info.chorus << Chorus.create(name: params['chorus_name']) unless params['chorus_name'].empty?",
   ]
   end
 

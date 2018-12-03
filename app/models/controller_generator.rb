@@ -30,6 +30,14 @@ class ControllerGenerator
       "#{@class.singular_name}.#{prop.underscore} = #{prop}.create(name: params['#{prop.underscore}']['name']) unless params['#{prop.underscore}']['name'].empty?"
     end
   end
+  
+  def create_new_has_many
+    # binding.pry
+    props = @class.has_many + @class.many_through_join.map{|p| p[:many]}
+    props.map do |prop|
+      "#{@class.singular_name}.#{prop.underscore.pluralize} << #{prop}.create(name: params['#{prop.underscore.pluralize}']['name']) unless params['#{prop.underscore.pluralize}']['name'].empty?"
+      end
+  end
 
   def index_action
     %(get '/#{@class.table_name}' do

@@ -64,6 +64,8 @@ class SongInfosControllerMock
       song_info = SongInfo.create(params['song_info'])
       song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
       song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
+      song_info.verses << Verse.create(name: params['verse_name']) unless params['verse_name'].empty?
+      song_info.chorus << Chorus.create(name: params['chorus_name']) unless params['chorus_name'].empty?
       song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
       song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
       song_info.save

@@ -7,7 +7,6 @@ class ControllerGenerator
   end
 
   def all_properties
-    # props = @class.belongs_to + @class.many_through_join.map{|p| p[:many]} + @class.has_many
     @class.relationship_names.collect do |prop_name|
       "@#{prop_name.underscore.pluralize} = #{prop_name}.all" 
     end
@@ -72,6 +71,16 @@ class ControllerGenerator
       #{all_properties.join("\n      ")}
       #{erb_call("new")}
     end)
-
   end
+
+    def create_action
+    %(post '/#{@class.table_name}' do 
+      #{create_self}
+      #{create_new_belongs_to.join("\n      ")}
+      #{create_new_has_many.join("\n      ")}
+      #{@class.singular_name}.save
+      #{redirect_show}
+    end)    
+  end
+
 end

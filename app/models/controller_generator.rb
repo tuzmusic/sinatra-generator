@@ -42,6 +42,10 @@ class ControllerGenerator
     "redirect \"#{@class.table_name}/\#{#{@class.singular_name}.id}\""
   end
 
+  def erb_call(path)
+    "erb :'/#{@class.table_name}/new'"
+  end
+
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all

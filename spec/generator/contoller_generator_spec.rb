@@ -85,6 +85,7 @@ describe "ControllerGenerator" do
 
     describe "clear_unchecked_params" do
       it "returns an array of code to clear out unchecked params" do
+        # binding.pry
         expect(con_gen.clear_unchecked_params).to match_array(mock.clear_unchecked_params)
       end
     end

@@ -46,11 +46,32 @@ class ControllerGenerator
     "erb :'/#{@class.table_name}/new'"
   end
 
+  
+  def clear_unchecked_params
+    props = @class.has_many + @class.many_through_join.map{|p| p[:many]}
+    props.map do |prop|
+    %(if !params[:#{@class.singular_name}].keys.include?('#{prop.underscore}_ids')
+      params[:song_info]['#{prop.underscore}_ids'] = []
+    end)
+    end
+  end
+  
+#  "if !params[:song_info].keys.include?('verse_ids')\n" + "      params[:song_info]['verse_ids'] = []\n" + "      end",
+#  "if !params[:song_info].keys.include?('verse_ids')\n" + "      params[:song_info]['verse_ids'] = []\n" + "    end\"",
+#  "if !params[:song_info].keys.include?('chorus_ids')\n" + "      params[:song_info]['chorus_ids'] = []\n" + "      end",
+#  "if !params[:song_info].keys.include?('genre_ids')\n" + "      params[:song_info]['genre_ids'] = []\n" + "      end",
+#  "if !params[:song_info].keys.include?('player_ids')\n" + "      params[:song_info]['player_ids'] = []\n" + "      end"]
+
+#  "if !params[:song_info].keys.include?('chorus_ids')\n" + "      params[:song_info]['chorus_ids'] = []\n" + "    end\""]
+#  "if !params[:song_info].keys.include?('genre_ids')\n" + "      params[:song_info]['genre_ids'] = []\n" + "    end\"",
+#  "if !params[:song_info].keys.include?('player_ids')\n" + "      params[:song_info]['player_ids'] = []\n" + "    end\"",
+
+
+
   def index_action
     %(get '/#{@class.table_name}' do
       @#{@class.table_name} = #{@class.name}.all
       erb :'/#{@class.table_name}/index'
     end)
   end
-  
 end

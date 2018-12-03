@@ -7,7 +7,7 @@ class ControllerGenerator
   end
 
   def all_properties
-    props = @class.belongs_to + @class.many_through_join.map{|p| p[:many]}
+    props = @class.belongs_to + @class.many_through_join.map{|p| p[:many]} + @class.has_many
     props.collect do |prop_name|
       "@#{prop_name.underscore.pluralize} = #{prop_name}.all" 
     end
@@ -23,6 +23,14 @@ class ControllerGenerator
   
   def find_self
     "#{@class.singular_name} = #{@class.name}.find(params[:id])"   
+  end
+
+  def create_new_belongs_to
+    
+
+
+
+
   end
 
   def index_action

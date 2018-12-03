@@ -4,7 +4,15 @@ class SongInfosControllerMock
     ['@artists = Artist.all',
       '@albums = Album.all',
       '@genres = Genre.all',
-      '@players = Player.all']
+      '@players = Player.all',
+      '@verses = Verse.all',
+      '@chorus = Chorus.all',
+    ]
+  end
+
+  def create_new_belongs_to
+    ["song_info.artist = Artist.create(name: params['artist']['name']) unless params['artist']['name'].empty?",
+    "song_info.album = Album.create(name: params['album']['name']) unless params['album']['name'].empty?"]
   end
 
   def index_action

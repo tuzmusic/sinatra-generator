@@ -9,7 +9,7 @@ describe "ControllerGenerator" do
                       {name: 'artist_name', type: 'string'},
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist', 'Album']
-    cl.has_many = ['Verse']
+    cl.has_many = ['Verse', 'Chorus']
     cl.many_through_join = [ { many: 'Genre', through: 'SongGenre' },
                             { many: 'Player', through: 'SongPlayers' }]
     end 
@@ -87,7 +87,7 @@ describe "ControllerGenerator" do
       end
     end
 
-    describe "clear_unhecked_params" do
+    describe "clear_unchecked_params" do
       it "returns an array of code to clear out unchecked params" do
         lines = ["if !params[:song_info].keys.include?('genre_ids')
           params[:song_info]['genre_ids'] = []

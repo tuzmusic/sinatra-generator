@@ -155,4 +155,10 @@ describe "ControllerGenerator" do
       end
     end
   end
+
+  describe "generate" do
+    it "generates the entire controller file" do
+      expect(con_gen.generate).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+    end
+  end
 end

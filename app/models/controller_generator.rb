@@ -26,11 +26,9 @@ class ControllerGenerator
   end
 
   def create_new_belongs_to
-    
-
-
-
-
+    @class.belongs_to.map do |prop|
+      "#{@class.singular_name}.#{prop.underscore} = #{prop}.create(name: params['#{prop.underscore}']['name']) unless params['#{prop.underscore}']['name'].empty?"
+    end
   end
 
   def index_action

@@ -19,7 +19,7 @@ describe "ControllerGenerator" do
       cg.class = cl
     end
   }
-  require_relative '../../fixtures/song_infos_controller methods'
+  require_relative '../../fixtures/song_infos_controller_mock'
   let(:mock) { SongInfosControllerMock.new }
 
   it "has a @class property that stores a GeneratorClass instance" do
@@ -66,7 +66,7 @@ describe "ControllerGenerator" do
       
     describe "create_new_has_many" do
       it "returns code to add new instances of has_many properties" do
-        expect(con_gen.create_new_belongs_to).to match_array(mock.create_new_has_many)
+        expect(con_gen.create_new_has_many).to match_array(mock.create_new_has_many)
       end
     end
 

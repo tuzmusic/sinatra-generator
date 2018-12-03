@@ -81,12 +81,14 @@ class SongInfosControllerMock
   end
 
   def edit_action
-    %(get '/song_infos/:id/edit' do 
+    %(get '/song_infos/:id/edit' do
       @song_info = SongInfo.find(params[:id])
       @artists = Artist.all
       @albums = Album.all
       @genres = Genre.all
       @players = Player.all
+      @verses = Verse.all
+      @chorus = Chorus.all
       erb :'/song_infos/edit'
     end)
   end

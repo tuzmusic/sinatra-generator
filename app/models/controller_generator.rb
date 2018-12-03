@@ -73,7 +73,7 @@ class ControllerGenerator
     end)
   end
 
-    def create_action
+  def create_action
     %(post '/#{@class.table_name}' do 
       #{create_self}
       #{create_new_belongs_to.join("\n      ")}
@@ -89,5 +89,13 @@ class ControllerGenerator
       #{erb_call('show')}
     end)
   end
+
+  def edit_action
+    %(get '/#{@class.table_name}/:id/edit' do
+      @#{find_self}
+      #{all_properties.join("\n      ")}
+      #{erb_call("edit")}
+    end)
+  end  
 
 end

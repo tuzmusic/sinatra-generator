@@ -1,4 +1,4 @@
-require_relative '../../config/environment'
+require_relative '../../../config/environment'
 
 class String
   def valid_class_name?

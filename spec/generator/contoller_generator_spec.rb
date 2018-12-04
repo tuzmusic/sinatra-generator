@@ -1,5 +1,5 @@
 require_relative '../spec_helper'
-Dir[File.join(File.dirname(__FILE__), "../../app/models", "*.rb")].each {|f| require f}
+Dir[File.join(File.dirname(__FILE__), "../../generator/app/models", "*.rb")].each {|f| require f}
 
 describe "ControllerGenerator" do
   
@@ -9,9 +9,9 @@ describe "ControllerGenerator" do
                       {name: 'artist_name', type: 'string'},
                       {name: 'duration_in_seconds', type: 'integer'} ]
     cl.belongs_to = ['Artist', 'Album']
-    cl.has_many = ['Verse', 'Chorus']
-    cl.many_through_join = [ { many: 'Genre', through: 'SongGenre' },
-                            { many: 'Player', through: 'SongPlayers' }]
+    cl.has_many = ['Verse']
+    cl.many_through_join = [ { many: 'Genre', through: 'SongInfoGenre' },
+                            { many: 'Player', through: 'SongInfoPlayers' }]
     end 
   }
 

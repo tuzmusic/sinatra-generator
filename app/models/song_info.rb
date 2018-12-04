@@ -8,4 +8,5 @@ class SongInfo < ActiveRecord::Base
   has_many :players, through: :song_info_players
   has_many :song_info_players
   has_many :verses
+  has_many :lyrics, through: :verses  # for testing many_through. not otherwise implemented
 end

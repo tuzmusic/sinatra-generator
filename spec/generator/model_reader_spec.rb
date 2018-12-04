@@ -42,7 +42,6 @@ describe "ModelReader" do
 
   describe "has_many" do
     it "gets the has_many relationships that have no through" do
-      # expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse",])
       expect(reader.has_many).to match_array(cl.has_many)
     end    
   end
@@ -58,24 +57,19 @@ describe "ModelReader" do
 
   describe "has_many_through" do
     it "gets has_many_through relationships that are NOT join relationships" do
-      expect(reader.has_many_through).to match_array([{many:'Lyric', through:'Verse'}])  
+      expect(reader.has_many_through).to match_array(cl.has_many_through)  
     end
   end
   
   describe "many_through_join" do
     it "gets many_to_many relationships with their through (join table) names" do
-      rels = [ { many: 'Genre', through: 'SongInfoGenre' },
-          { many: 'Player', through: 'SongInfoPlayer' }]
-      expect(reader.many_through_join).to match_array(rels)  
+      expect(reader.many_through_join).to match_array(cl.many_through_join)  
     end
   end
 
   describe "properties" do
     it "gets non-relationship properties" do
-      properties = [ {name: 'name', type: 'string'},
-                    {name: 'artist_name', type: 'string'},
-                    {name: 'duration_in_seconds', type: 'integer'} ]
-      list = ['name', 'artist_name', 'duration_in_seconds']
+      list = cl.properties.map {|p| p[:name]}
       expect(reader.properties).to match_array(list)
     end
 

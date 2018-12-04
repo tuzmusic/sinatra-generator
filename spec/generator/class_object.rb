@@ -13,8 +13,8 @@ class MockObjects
       cl.belongs_to = ['Artist', 'Album']
       cl.has_many = ['Verse',]
       cl.has_many_through = [{ many:'Lyric', through:'Verse' }]
-      cl.many_through_join = [ { many: 'Genre', through: 'SongGenre' },
-                              { many: 'Player', through: 'SongPlayer' }]
+      cl.many_through_join = [ { many: 'Genre', through: 'SongInfoGenre' },
+                              { many: 'Player', through: 'SongInfoPlayer' }]
       end 
     end
   

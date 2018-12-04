@@ -10,6 +10,6 @@ task :console do
 end
 
 task :generate do
-  SiteGenerator.new("").call
+  SiteGenerator.new.call
 end
 

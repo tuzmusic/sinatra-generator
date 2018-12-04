@@ -4,16 +4,15 @@ require 'FileUtils'
 
 class SiteGenerator
 
-  attr_reader :path 
-
-  def initialize(path)
-    @path = path
-    FileUtils.mkdir_p path
+  attr_reader :classes 
+ 
+  def generate_generator_classes
+    paths = Dir["/app/models/*.rb"]
   end
 
-  
   def call
-    ClassGenerator.new(path:@path, class_name:"Song").generate
+    generate_generator_classes
+    generate_migrations
+    generate_controllers
   end
-  
 end

@@ -1,4 +1,4 @@
 class Album < ActiveRecord::Base
   has_many :song_infos
-  belongs_to :song
+  belongs_to :song_info
 end

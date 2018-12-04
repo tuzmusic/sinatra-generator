@@ -93,7 +93,7 @@ describe "ControllerGenerator" do
    describe "create_controller_code" do
     it "generates the entire controller file" do
       con_gen.generate_controller
-      expect(File.read("_generated/app/controllers/song_infos_controller.rb")).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
+      expect(File.read("app/controllers/song_infos_controller.rb")).to eq(File.read("fixtures/song_infos_controller_full_mock.rb"))
     end
   end
 
@@ -175,7 +175,7 @@ describe "ControllerGenerator" do
       expect{
         table_gen.generate_controller
       }.to change{
-        Dir["_generated/app/controllers/*"].length
+        Dir["app/controllers/*"].length
       }.by(1)
     end
   end

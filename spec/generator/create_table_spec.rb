@@ -63,7 +63,7 @@ context "TableGenerator" do
       expect{
         table_gen.generate_create_table_migration
       }.to change{
-        Dir["_generated/db/migrate/*"].length
+        Dir["db/migrate/*"].length
       }.by(1)
     end
   end

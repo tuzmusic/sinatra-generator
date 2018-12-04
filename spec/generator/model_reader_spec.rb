@@ -49,7 +49,7 @@ describe "ModelReader" do
     it "creates hashes for all through relationships" do
       through = [ { many: 'Genre', through: 'SongInfoGenre' },
                   { many: 'Lyric', through: 'Verse' },
-                  { many: 'Player', through: 'SongInfoPlayers' }]     
+                  { many: 'Player', through: 'SongInfoPlayer' }]     
       expect(reader.all_through).to match_array(through)
     end
   end

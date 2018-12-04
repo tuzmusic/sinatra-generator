@@ -29,7 +29,7 @@ class ModelReader
     hashes = strs.map do |str|
       matches = str.scan(/(\w+), through: :(\w+)/).first
       .map {|p| class_name_from_table_name(p)}
-      {many: matches[0].strip, through: matches[1].strip.pluralize}
+      { many: matches[0].strip, through: matches[1].strip }
     end    
   end
 

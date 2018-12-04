@@ -15,13 +15,13 @@ class SiteGenerator
 
   def generate_migrations
     @classes.each do |cl|
-      TableGenerator.new(cl).generate_create_table_migration
+      TableGenerator.new(cl).generate_files
     end 
   end
   
   def generate_controllers
     @classes.each do |cl|
-      ControllerGenerator.new(cl).generate_controller
+      ControllerGenerator.new(cl).generate_files
     end     
   end
 

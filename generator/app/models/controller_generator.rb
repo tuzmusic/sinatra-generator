@@ -137,7 +137,7 @@ class ControllerGenerator
     @class.table_name + "_controller.rb"
   end
 
-  def create_controller_code
+  def create_code
     @actions = [
       method(:index_action),
       method(:new_action),
@@ -152,10 +152,10 @@ class ControllerGenerator
     template.result(binding)
   end
 
-  def generate_controller
+  def generate_files
     require 'fileutils'
     FileUtils.mkdir_p 'app/controllers/'
     # if no ApplicationController, create ApplicationController
-    File.write("app/controllers/#{controller_filename}", create_controller_code)
+    File.write("app/controllers/#{controller_filename}", create_code)
   end
 end

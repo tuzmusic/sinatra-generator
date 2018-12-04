@@ -36,17 +36,17 @@ class TableGenerator
     end
   end
 
-  def create_table_code
+  def create_code
     path = "generator/app/templates/create_table_migration.erb"
     template_str = File.read(path)
     template = ERB.new(template_str)
     template.result(binding)
   end
 
-  def generate_create_table_migration
+  def generate_files
     require 'fileutils'
     FileUtils.mkdir_p 'db/migrate/'
-    File.write("db/migrate/#{create_table_filename}", create_table_code)
+    File.write("db/migrate/#{create_table_filename}", create_code)
   end
 
 end

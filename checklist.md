@@ -11,6 +11,11 @@ hold off on the CLI for now
 Work on a class generator that will take input from wherever. From a CLI, from reading pre-written model files, from wherever.
 The specs can assign the values that the migration-, controller-, and views-generators use.
 
+BUILDING VIEWS GENERATOR
+  This is especially hard because it involves erb inside erb.
+  More trouble than it's worth for now!
+
+
 FINDING HAS_MANY RELATIONSHIPS
   An artist has_many :songs.
   Therefore, songs table has artist_id

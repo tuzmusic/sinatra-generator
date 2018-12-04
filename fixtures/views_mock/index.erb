@@ -1,1 +1,8 @@
-index.erb
+<h2>Song Infos</h2>
+
+<ol>
+  <% @song_infos.each do |song_info| %>
+  <li><a href="song_infos/"><%= song_info.id %></a></li>
+  <% end %>
+</ol>
+

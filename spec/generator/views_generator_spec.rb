@@ -19,11 +19,17 @@ describe "ViewsGenerator" do
     } 
   }
 
-  path = "fixtures/song_infos_controller_full_mock.rb"
+  path = "fixtures/views_mock/"
 
   it "has a @class property that stores a GeneratorClass instance" do
     expect(tg).to respond_to(:class)
     expect(tg.class.class).to eq(GeneratorClass)
+  end
+
+  describe "index_page" do
+    it "generates an index page" do
+      expect(vg.index_page).to eq(File.read(path+"index.erb"))
+    end
   end
 
 

@@ -10,7 +10,9 @@ class ModelReader
   end
 
   def belongs_to
-    array = file.scan(/belongs_to (.+)/)[0][0]
+    array = file.scan(/belongs_to (.+)/)
+    return [] if array.empty?
+    array.first.first
     .scan(/\w+/)
     .map {|p| class_name_from_table_name(p)}
   end
@@ -47,17 +49,19 @@ class ModelReader
   end
 
   def properties # => list of property names only (no types)
-    str = file.scan(/attr_accessor (.+)/)[0][0].scan(/\w+/)
+    array = file.scan(/attr_accessor (.+)/)
+    return [] if array.empty?
+    array.first.first.scan(/\w+/)
   end
 
   def create_generator_class
       cl = GeneratorClass.new
       cl.name = class_name
-      cl.properties = properties.map {|p| {name: p, type: 'string'}}
       cl.belongs_to = belongs_to
       cl.has_many = has_many
       cl.has_many_through = has_many_through
       cl.many_through_join = many_through_join
+      cl.properties = properties.map {|p| {name: p, type: 'string'}}
       cl
   end
 

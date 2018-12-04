@@ -7,10 +7,11 @@ class SiteGenerator
   attr_reader :classes 
  
   def generate_generator_classes
-    paths = Dir["/app/models/*.rb"]
+    paths = Dir["app/models/*.rb"]
     @classes = paths.map do |path|
       ModelReader.new(path).create_generator_class
     end
+    binding.pry
   end
 
   def call

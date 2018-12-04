@@ -20,9 +20,30 @@ class ModelReader
   end
   
   def has_many
+    throughs = many_through_join.map {|p| p[:through].underscore.pluralize}
+    ret = all_has_many.select do |p|
+      should = true
+      should = false if p.include?('through')
+      should =  false if throughs.include?(p)
+      should
+    end.map {|p| class_name_from_table_name(p)}
+  end
+
+  def _has_many
     # Does not work if class name (singular) ends in S
-    all_has_many.select {|p| !p.include?('through')}
-    .map {|p| class_name_from_table_name(p)}
+    many = all_has_many.select do |p|
+      throughs = all_through.map {|p| p[:through]}
+      should_include = true
+      if p.include?('through')
+        through = p.scan(/through: :(\w+)/)[0][0]
+        p = class_name_from_table_name(through)
+      end
+      should_include = false if throughs.include?(p)
+      should_include
+    end
+    binding.pry
+    many.map {|p| 
+    class_name_from_table_name(p)}
   end
   
   def all_through

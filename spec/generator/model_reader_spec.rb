@@ -42,7 +42,8 @@ describe "ModelReader" do
 
   describe "has_many" do
     it "gets the has_many relationships that have no through" do
-      expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse",])
+      # expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse",])
+      expect(reader.has_many).to match_array(cl.has_many)
     end    
   end
   

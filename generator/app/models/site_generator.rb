@@ -13,6 +13,10 @@ class SiteGenerator
     end
   end
 
+  def generate_migrations
+    
+  end
+
   def call
     generate_generator_classes
     generate_migrations

@@ -2,6 +2,10 @@ class TableGenerator
 
   attr_accessor :class
 
+  def initialize(cl)
+    @class = cl
+  end
+
   def table_name
     @class.table_name
   end  

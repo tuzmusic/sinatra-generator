@@ -2,12 +2,11 @@ class ModelReader
   attr_accessor :filepath, :class, :file
 
   def class_name
-    binding.pry
     file.scan(/class (\S+)/).first.first
   end  
 
   def belongs_to
-    
+    file.scan(/belongs_to :(\S+)/).first.map {|t| t.titleize}
   end
   
   def has_many

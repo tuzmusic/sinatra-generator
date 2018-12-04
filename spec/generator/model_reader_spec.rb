@@ -73,8 +73,10 @@ describe "ModelReader" do
       properties = [ {name: 'name', type: 'string'},
                     {name: 'artist_name', type: 'string'},
                     {name: 'duration_in_seconds', type: 'integer'} ]
-      expect(reader.properties).to match_array(properties)
+      list = ['name', 'artist_name', 'duration_in_seconds']
+      expect(reader.properties).to match_array(list)
     end
+
     xit "determines the data type for these properties?!?!?!" do
       
     end

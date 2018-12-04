@@ -45,8 +45,8 @@ class ModelReader
     end
   end
 
-  def properties
-    
+  def properties # => list of property names only (no types)
+    str = file.scan(/attr_accessor (.+)/)[0][0].scan(/\w+/)
   end
 
 

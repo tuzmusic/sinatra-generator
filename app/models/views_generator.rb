@@ -5,15 +5,16 @@ class ViewsGenerator
   attr_accessor :class
 
   def index_page
-    <<~ HTML
-    <h2>@class.table_name.titleize</h2>
+
+    <<~ERB
+    <h2>#{@class.table_name.titleize}</h2>
 
     <ol>
       <% @#{@class.table_name}.each do |#{@class.singular_name}| %>
       <li><a href="#{@class.table_name}/"><%= #{@class.singular_name}.id %></a></li>
       <% end %>
     </ol>
-    HTML
+    ERB
     
   end
   

@@ -14,7 +14,7 @@ describe "ViewsGenerator" do
     end 
   }
 
-  let(:vg) { ViewsGenerator.new.tap { |tg| 
+  let(:vg) { ViewsGenerator.new.tap { |vg| 
       vg.class = cl 
     } 
   }
@@ -22,8 +22,8 @@ describe "ViewsGenerator" do
   path = "fixtures/views_mock/"
 
   it "has a @class property that stores a GeneratorClass instance" do
-    expect(tg).to respond_to(:class)
-    expect(tg.class.class).to eq(GeneratorClass)
+    expect(vg).to respond_to(:class)
+    expect(vg.class.class).to eq(GeneratorClass)
   end
 
   describe "index_page" do

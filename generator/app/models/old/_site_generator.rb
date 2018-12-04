@@ -2,7 +2,7 @@ require 'date'
 require 'erb'
 require 'FileUtils'
 
-class SiteGenerator
+class _SiteGenerator
 
   attr_reader :classes 
  

@@ -26,7 +26,7 @@ class TableGenerator
   end
 
   def create_table_code
-    path = "app/templates/create_table_migration.erb"
+    path = "generator/app/templates/create_table_migration.erb"
     template_str = File.read(path)
     template = ERB.new(template_str)
     template.result(binding)

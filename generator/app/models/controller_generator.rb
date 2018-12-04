@@ -143,7 +143,7 @@ class ControllerGenerator
       method(:patch_action),
       method(:delete_action),
     ]
-    template_str = File.read("app/templates/controller_generator_generate.erb")
+    template_str = File.read("generator/app/templates/controller_generator_generate.erb")
     template = ERB.new(template_str)
     template.result(binding)
   end

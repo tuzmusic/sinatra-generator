@@ -21,7 +21,7 @@ class SiteGenerator
   
   def generate_controllers
     @classes.each do |cl|
-      TableGenerator.new(cl).generate_create_table_migration
+      ControllerGenerator.new(cl).generate_controller
     end     
   end
 

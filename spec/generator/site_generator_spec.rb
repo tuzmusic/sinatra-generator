@@ -23,7 +23,7 @@ describe "SiteGenerator" do
       it "creates controller files for each class" do
         sg.generate_generator_classes
         sg.generate_controllers
-        expect(Dir["app/controllers/*.rb"].count).to eq(Dir["app/models/*.rb"].count)
+        expect(Dir["app/controllers/*.rb"].count).to eq(Dir["app/models/*.rb"].count+1)
       end    
     end
   end

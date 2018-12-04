@@ -1,6 +1,10 @@
 class ControllerGenerator
   attr_accessor :class
   
+  def initialize(cl)
+    @class = cl
+  end
+
   # CODE HELPER METHODS
   def all_self
     "@#{@class.table_name} = #{@class.name}.all"

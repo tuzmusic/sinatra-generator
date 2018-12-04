@@ -10,7 +10,8 @@ class ModelReader
   end
 
   def belongs_to
-    array = file.scan(/belongs_to :(\S+)/).first
+    array = file.scan(/belongs_to (.+)/)[0][0]
+    .scan(/\w+/)
     .map {|p| class_name_from_table_name(p)}
   end
 

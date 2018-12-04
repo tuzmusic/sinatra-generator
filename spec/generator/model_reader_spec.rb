@@ -16,14 +16,13 @@ describe "ModelReader" do
 
   describe "class_name" do
     it "gets the name of the class" do
-      expect(reader.class_name).to eq("SongInfo")
       expect(reader.class_name).to eq(cl.name)
     end
   end  
 
   describe "belongs_to" do
     it "gets the belongs_to relationships" do
-      expect(reader.belongs_to).to match(["Artist"])
+      expect(reader.belongs_to).to match_array(cl.belongs_to)
     end    
   end
   

@@ -2,7 +2,7 @@ class SongInfo < ActiveRecord::Base
 
   attr_accessor :name, :artist_name, :duration_in_seconds
 
-  belongs_to :artist
+  belongs_to :artist, :album
   has_many :genres, through: :song_info_genres
   has_many :song_info_genres
   has_many :players, through: :song_info_players

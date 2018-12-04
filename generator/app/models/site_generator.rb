@@ -11,7 +11,6 @@ class SiteGenerator
     @classes = paths.map do |path|
       ModelReader.new(path).create_generator_class
     end
-    binding.pry
   end
 
   def call

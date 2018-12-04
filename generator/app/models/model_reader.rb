@@ -34,12 +34,15 @@ class ModelReader
   end
 
   def has_many_through
+    all_through.select do |hash|
+      !hash[:through].include?(hash[:many])
+    end
   end
   
   def many_through_join
-    
-    # .map { |p| p.titleize.gsub(' ', '').singularize }
-
+    all_through.select do |hash|
+      hash[:through].include?(hash[:many])
+    end
   end
 
   def properties

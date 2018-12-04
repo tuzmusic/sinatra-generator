@@ -6,11 +6,11 @@ class ModelReader
   end  
 
   def belongs_to
-    file.scan(/belongs_to :(\S+)/).first.map {|t| t.titleize}
+    array = file.scan(/belongs_to :(\S+)/).first
+    class_names_from_array_of_table_names(array)
   end
 
   def class_names_from_array_of_table_names(arr)
-    # binding.pry
     arr.map {|p| p.titleize.gsub(' ', '').singularize}
   end
 
@@ -22,7 +22,6 @@ class ModelReader
     # Does not work if class name (singular) ends in S
     array = all_has_many.select {|p| !p.include?('through')}
     class_names_from_array_of_table_names(array)
-    # .map { |p| p.titleize.gsub(' ', '').singularize }
   end
   
   def all_through

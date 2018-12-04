@@ -1,11 +1,7 @@
 class ModelReader
   
-  def generate_model(file)
+  def create_class(file)
     
-  end
-
-  def all_files
-    Dir["app/models/*.rb"]
   end
 
   def run

@@ -6,5 +6,17 @@ describe "ModelReader" do
   let(:reader) { ModelReader.new }
 
   it "reads a single class file and creates a GeneratorClass object" do end
+  
+  describe "class_name" do
+    
+  end  
+  
+  describe "has_many_through" do
+    
+  end
+
+  describe "many_through_join" do
+    
+  end
 
 end

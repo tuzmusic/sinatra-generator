@@ -10,12 +10,12 @@ class ModelReader
   end
 
   def all_has_many
-    # binding.pry
     file.scan(/has_many :(.+)/).map {|p| p.first}
   end
   
   def has_many
-    
+    all_has_many.select {|p| !p.include?('through')}
+    .map { |p| p.titleize.gsub(' ', '').chomp('s') }
   end
   
   def has_many_through

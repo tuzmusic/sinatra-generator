@@ -63,7 +63,7 @@ describe "ModelReader" do
   describe "many_through_join" do
     it "gets many_to_many relationships with their through (join table) names" do
       rels = [ { many: 'Genre', through: 'SongInfoGenre' },
-          { many: 'Player', through: 'SongInfoPlayers' }]
+          { many: 'Player', through: 'SongInfoPlayer' }]
       expect(reader.many_through_join).to match_array(rels)  
     end
   end

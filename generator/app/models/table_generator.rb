@@ -15,7 +15,14 @@ class TableGenerator
     filename = "#{date_str}_create_#{table_name}.rb"
   end
 
+  def add_name_column_if_needed
+    if @class.properties.none?{ |p| p[:name] == 'name' }
+      @class.properties.prepend({name: 'name', type: 'string'})
+    end
+  end
+
   def properties_columns
+    add_name_column_if_needed
     @class.properties.map do |prop|
       "t.#{prop[:type.downcase]} :#{prop[:name.downcase]}"
     end

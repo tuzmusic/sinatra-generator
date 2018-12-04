@@ -15,7 +15,7 @@ class ModelReader
   
   def has_many
     all_has_many.select {|p| !p.include?('through')}
-    .map { |p| p.titleize.gsub(' ', '').chomp('s') }
+    .map { |p| p.titleize.gsub(' ', '').singularize }
   end
   
   def has_many_through

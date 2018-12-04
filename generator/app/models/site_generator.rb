@@ -14,7 +14,9 @@ class SiteGenerator
   end
 
   def generate_migrations
-    
+    @classes.each do |cl|
+      TableGenerator.new(cl).generate_create_table_migration
+    end 
   end
 
   def call

@@ -1,8 +1,7 @@
 class Create<%= @class.name %> < ActiveRecord::Migration
   def change
     create_table :<%= table_name %> do |t|
-      <% properties_columns.each do |line| %><%= line %>
-      <% end %><% belongs_to_columns.each do |line| %><%= line %><% end %>
+      <%=(properties_columns+belongs_to_columns).join("\n\t\t\t")%>
     end
   end
 end

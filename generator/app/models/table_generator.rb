@@ -37,7 +37,7 @@ class TableGenerator
   end
 
   def generate_create_table_migration
-    File.write("/db/migrate/#{create_table_filename}", create_table_code)
+    File.write("db/migrate/#{create_table_filename}", create_table_code)
   end
 
 end

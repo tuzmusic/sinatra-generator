@@ -44,6 +44,8 @@ class TableGenerator
   end
 
   def generate_create_table_migration
+    require 'fileutils'
+    FileUtils.mkdir_p 'db/migrate/'
     File.write("db/migrate/#{create_table_filename}", create_table_code)
   end
 

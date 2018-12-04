@@ -18,5 +18,13 @@ describe "SiteGenerator" do
         expect(Dir["db/migrate/*.rb"].count).to eq(Dir["app/models/*.rb"].count)
       end    
     end
+
+    describe "generate_controllers" do
+      it "creates controller files for each class" do
+        sg.generate_generator_classes
+        sg.generate_controllers
+        expect(Dir["app/controllers/*.rb"].count).to eq(Dir["app/models/*.rb"].count)
+      end    
+    end
   end
 end

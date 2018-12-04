@@ -151,6 +151,7 @@ class ControllerGenerator
   def generate_controller
     require 'fileutils'
     FileUtils.mkdir_p 'app/controllers/'
+    # if no ApplicationController, create ApplicationController
     File.write("app/controllers/#{controller_filename}", create_controller_code)
   end
 end

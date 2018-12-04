@@ -18,6 +18,12 @@ class SiteGenerator
       TableGenerator.new(cl).generate_create_table_migration
     end 
   end
+  
+  def generate_controllers
+    @classes.each do |cl|
+      TableGenerator.new(cl).generate_create_table_migration
+    end     
+  end
 
   def call
     generate_generator_classes

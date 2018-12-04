@@ -79,7 +79,9 @@ describe "ModelReader" do
   end
 
   describe "create_generator_class" do
-    
+    it "returns a fully formed GeneratorClass object" do
+      expect(reader.create_generator_class).to eq(cl)
+    end
   end
 
 end

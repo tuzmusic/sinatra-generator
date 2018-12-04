@@ -5,7 +5,7 @@ Dir[File.join(File.dirname(__FILE__), "../../generator/app/models", "*.rb")].eac
 class MockObjects
 
     def self.cl
-      cl = GeneratorClass.new.tap do |cl|
+      cl = GeneratorClass.new
       cl.name = "SongInfo"
       cl.properties = [ {name: 'name', type: 'string'},
                         {name: 'artist_name', type: 'string'},
@@ -15,7 +15,7 @@ class MockObjects
       cl.has_many_through = [{ many:'Lyric', through:'Verse' }]
       cl.many_through_join = [ { many: 'Genre', through: 'SongInfoGenre' },
                               { many: 'Player', through: 'SongInfoPlayer' }]
-      end 
+      cl
     end
   
 

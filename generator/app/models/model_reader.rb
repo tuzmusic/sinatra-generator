@@ -50,6 +50,9 @@ class ModelReader
     str = file.scan(/attr_accessor (.+)/)[0][0].scan(/\w+/)
   end
 
+  def create_generator_class
+    
+  end
 
   def initialize(filepath)
     @filepath = filepath  

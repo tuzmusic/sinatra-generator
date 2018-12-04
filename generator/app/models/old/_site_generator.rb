@@ -8,6 +8,9 @@ class SiteGenerator
  
   def generate_generator_classes
     paths = Dir["/app/models/*.rb"]
+    @classes = paths.map do |path|
+      ModelReader.new(path).create_generator_class
+    end
   end
 
   def call

@@ -1,10 +1,9 @@
 class ModelReader
-  
-  def create_class(file)
-    
-  end
+  attr_accessor :filepath, :class, :file
 
-  def run
-    
+  def initialize(filepath)
+    @filepath = filepath  
+    @file = File.read(filepath)
   end
+  
 end

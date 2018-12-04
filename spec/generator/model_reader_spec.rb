@@ -7,6 +7,12 @@ describe "ModelReader" do
 
   it "reads a single class file and creates a GeneratorClass object" do end
   
+  describe "initialize" do
+    it "takes a filepath and stores the contents of the file in the file property" do
+      expect(reader.file).to eq(File.read("app/models/song_info.rb"))
+    end
+  end
+
   describe "class_name" do
     it "gets the name of the class" do
       expect(reader.class_name).to eq("SongInfo")

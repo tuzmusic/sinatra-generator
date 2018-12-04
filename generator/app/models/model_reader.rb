@@ -51,7 +51,14 @@ class ModelReader
   end
 
   def create_generator_class
-    
+      cl = GeneratorClass.new
+      cl.name = class_name
+      cl.properties = properties.map {|p| {name: p, type: 'string'}}
+      cl.belongs_to = belongs_to
+      cl.has_many = has_many
+      cl.has_many_through = has_many_through
+      cl.many_through_join = many_through_join
+      cl
   end
 
   def initialize(filepath)

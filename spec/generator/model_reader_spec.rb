@@ -80,7 +80,8 @@ describe "ModelReader" do
 
   describe "create_generator_class" do
     it "returns a fully formed GeneratorClass object" do
-      expect(reader.create_generator_class).to eq(cl)
+      require 'json'
+      expect(reader.create_generator_class.to_json).to eq(cl.to_json)
     end
   end
 

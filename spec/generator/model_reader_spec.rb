@@ -33,6 +33,7 @@ describe "ModelReader" do
         "players, through: :song_info_players",
         "song_info_players",
         "verses",
+        "lyrics, through: :verses"
       ]
       expect(reader.all_has_many).to match_array(list)
     end
@@ -44,9 +45,18 @@ describe "ModelReader" do
     end    
   end
   
+  describe "all_through" do
+    it "creates hashes for all through relationships" do
+      through = [ { many: 'Genre', through: 'SongInfoGenre' },
+                  { many: 'Lyric', through: 'Verse' },
+                  { many: 'Player', through: 'SongInfoPlayers' }]     
+      expect(reader.all_through).to match_array(through)
+    end
+  end
+
   describe "has_many_through" do
-    xit "gets has_many_through relationships that are NOT join relationships" do
-      
+    it "gets has_many_through relationships that are NOT join relationships" do
+      expect(reader.has_many_through).to match_array([{many:'Lyric', through:'Verse'}])  
     end
   end
   

@@ -1,10 +1,11 @@
 require_relative '../spec_helper'
+require_relative './class_object'
 Dir[File.join(File.dirname(__FILE__), "../../generator/app/models", "*.rb")].each {|f| require f}
 
 describe "ModelReader" do
   
   let(:reader) { ModelReader.new("app/models/song_info.rb") }
-
+  let(:cl) { MockObjects.cl }
   it "reads a single class file and creates a GeneratorClass object" do end
   
   describe "initialize" do
@@ -16,6 +17,7 @@ describe "ModelReader" do
   describe "class_name" do
     it "gets the name of the class" do
       expect(reader.class_name).to eq("SongInfo")
+      expect(reader.class_name).to eq(cl.name)
     end
   end  
 
@@ -80,6 +82,10 @@ describe "ModelReader" do
     xit "determines the data type for these properties?!?!?!" do
       
     end
+  end
+
+  describe "create_generator_class" do
+    
   end
 
 end

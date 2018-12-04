@@ -33,7 +33,6 @@ describe "ModelReader" do
         "players, through: :song_info_players",
         "song_info_players",
         "verses",
-        "chorus",
       ]
       expect(reader.all_has_many).to match_array(list)
     end
@@ -41,7 +40,7 @@ describe "ModelReader" do
 
   describe "has_many" do
     it "gets the has_many relationships that have no through" do
-      expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse", "Chorus"])
+      expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse",])
     end    
   end
   

@@ -13,7 +13,6 @@ class SongInfoController < ApplicationController
     @genres = Genre.all
     @players = Player.all
     @verses = Verse.all
-    @chorus = Chorus.all
     erb :'/song_infos/new'
   end
   
@@ -23,7 +22,6 @@ class SongInfoController < ApplicationController
     song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
     song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
     song_info.verses << Verse.create(name: params['verse_name']) unless params['verse_name'].empty?
-    song_info.chorus << Chorus.create(name: params['chorus_name']) unless params['chorus_name'].empty?
     song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
     song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
     song_info.save
@@ -44,14 +42,12 @@ class SongInfoController < ApplicationController
     @genres = Genre.all
     @players = Player.all
     @verses = Verse.all
-    @chorus = Chorus.all
     erb :'/song_infos/edit'
   end
   
   # Patch Action
   patch '/song_infos/:id' do
     params[:song_info]['verse_ids'].clear if !params[:song_info].keys.include?('verse_ids')
-    params[:song_info]['chorus_ids'].clear if !params[:song_info].keys.include?('chorus_ids')
     params[:song_info]['genre_ids'].clear if !params[:song_info].keys.include?('genre_ids')
     params[:song_info]['player_ids'].clear if !params[:song_info].keys.include?('player_ids')
     song_info = SongInfo.find(params[:id])
@@ -59,7 +55,6 @@ class SongInfoController < ApplicationController
     song_info.artist = Artist.create(name: params['artist_name']) unless params['artist_name'].empty?
     song_info.album = Album.create(name: params['album_name']) unless params['album_name'].empty?
     song_info.verses << Verse.create(name: params['verse_name']) unless params['verse_name'].empty?
-    song_info.chorus << Chorus.create(name: params['chorus_name']) unless params['chorus_name'].empty?
     song_info.genres << Genre.create(name: params['genre_name']) unless params['genre_name'].empty?
     song_info.players << Player.create(name: params['player_name']) unless params['player_name'].empty?
     song_info.save

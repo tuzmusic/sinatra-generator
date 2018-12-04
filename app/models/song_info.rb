@@ -8,5 +8,4 @@ class SongInfo < ActiveRecord::Base
   has_many :players, through: :song_info_players
   has_many :song_info_players
   has_many :verses
-  has_many :chorus
 end

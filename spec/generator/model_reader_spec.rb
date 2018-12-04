@@ -25,8 +25,22 @@ describe "ModelReader" do
     end    
   end
   
+  describe "all_has_many" do
+    it "gets all lines of code describing has_many relationships, through or not" do
+      list = [
+        "genres, through: :song_info_genres",
+        "song_info_genres",
+        "players, through: :song_info_players",
+        "song_info_players",
+        "verses",
+        "chorus",
+      ]
+      expect(reader.all_has_many).to match_array(list)
+    end
+  end
+
   describe "has_many" do
-    it "gets the has_many relationships" do
+    it "gets the has_many relationships that have no through" do
       expect(reader.has_many).to match_array(["SongInfoGenre", "SongInfoPlayer", "Verse", "Chorus"])
     end    
   end

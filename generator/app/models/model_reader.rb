@@ -8,6 +8,11 @@ class ModelReader
   def belongs_to
     file.scan(/belongs_to :(\S+)/).first.map {|t| t.titleize}
   end
+
+  def all_has_many
+    # binding.pry
+    file.scan(/has_many :(.+)/).map {|p| p.first}
+  end
   
   def has_many
     
